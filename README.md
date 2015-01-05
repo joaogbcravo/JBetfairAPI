@@ -58,7 +58,7 @@ Add the following to your pom.xml
     OperationBuilder opf = new OperationBuilder(exec);
     
     // Countries to include
-    HashSet<String> countries = new HashSet<String>();
+    Set<String> countries = new HashSet<String>();
     countries.add("GB");
     
     // Create a market filter that filters out inplay Soccer competitions
