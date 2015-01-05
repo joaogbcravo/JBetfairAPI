@@ -24,6 +24,20 @@ The API implementation currently supports the following operations:
 - replaceOrders
 - updateOrders
 
+####Dependencies
+Add the following to your pom.xml
+```
+<dependency>
+    <groupId>org.glassfish.jersey.core</groupId>
+    <artifactId>jersey-client</artifactId>
+    <version>2.13</version>
+</dependency>
+<dependency>
+    <groupId>org.glassfish.jersey.media</groupId>
+    <artifactId>jersey-media-json-jackson</artifactId>
+    <version>2.13</version>
+</dependency>
+```
 ####Example code
 ######Login to the Betfair Exchange and retrieve a list of Soccer events in Britain
 ```Java
