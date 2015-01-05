@@ -1,0 +1,42 @@
+{
+    "children": [
+        {
+
+			    "children": [
+{
+    "children": [
+			{   
+			    "exchangeId": "1",
+			    "id": "1.114881860",
+			    "marketStartTime": "2014-08-14T00:00:00.000Z",
+			    "marketType": "WIN",
+			    "numberOfWinners": "2",
+			    "name": "Over/Under 6.5 Goals",
+			    "type": "MARKET"
+			}
+    ],
+    "id": "27247020.1115",
+    "name": "1300m 3yo",
+    "startTime": "2014-08-12T11:15:00.000Z",
+    "type": "RACE",
+    "venue": "Deauville",
+    "countryCode": "GB"
+}
+			    ],
+			    "id": "1",
+			    "name": "Soccer",
+			    "type": "EVENT_TYPE"
+			
+        },
+  {
+      "children": [
+      ],
+      "id": "1",
+      "name": "Soccer",
+      "type": "EVENT_TYPE"
+  }
+    ],
+    "id": 0,
+    "name": "ROOT",
+    "type": "GROUP"
+}
