@@ -5,7 +5,7 @@ import prj.betfair.api.betting.datatypes.CurrentOrderSummaryReport;
 import prj.betfair.api.betting.datatypes.SimpleTypes.OrderProjection;
 import prj.betfair.api.betting.datatypes.SimpleTypes.OrderBy;
 import prj.betfair.api.betting.datatypes.SimpleTypes.SortDir;
-import java.util.HashSet;
+import java.util.Set;
 
 import prj.betfair.api.betting.exceptions.APINGException;
 
@@ -21,10 +21,10 @@ public class ListCurrentOrdersOperation {
   private final int recordCount;
   private final TimeRange dateRange;
   private final TimeRange placedDateRange;
-  private final HashSet<String> marketIds;
+  private final Set<String> marketIds;
   private final Executor executor;
   private final OrderProjection orderProjection;
-  private final HashSet<String> betIds;
+  private final Set<String> betIds;
   private final int fromRecord;
 
   public ListCurrentOrdersOperation(Builder builder) {
@@ -43,14 +43,14 @@ public class ListCurrentOrdersOperation {
   /**
    * @return betIds Optionally restricts the results to the specified bet IDs.
    */
-  public HashSet<String> getBetIds() {
+  public Set<String> getBetIds() {
     return this.betIds;
   }
 
   /**
    * @return marketIds Optionally restricts the results to the specified market IDs.
    */
-  public HashSet<String> getMarketIds() {
+  public Set<String> getMarketIds() {
     return this.marketIds;
   }
 
@@ -130,9 +130,9 @@ public class ListCurrentOrdersOperation {
     private int recordCount;
     private TimeRange dateRange;
     private TimeRange placedDateRange;
-    private HashSet<String> marketIds;
+    private Set<String> marketIds;
     private OrderProjection orderProjection;
-    private HashSet<String> betIds;
+    private Set<String> betIds;
     private int fromRecord;
     private Executor executor;
 
@@ -144,7 +144,7 @@ public class ListCurrentOrdersOperation {
      * @param betIds Optionally restricts the results to the specified bet IDs.
      * @return Builder
      */
-    public Builder withBetIds(HashSet<String> betIds) {
+    public Builder withBetIds(Set<String> betIds) {
       this.betIds = betIds;
       return this;
     }
@@ -155,7 +155,7 @@ public class ListCurrentOrdersOperation {
      * @param marketIds Optionally restricts the results to the specified market IDs.
      * @return Builder
      */
-    public Builder withMarketIds(HashSet<String> marketIds) {
+    public Builder withMarketIds(Set<String> marketIds) {
       this.marketIds = marketIds;
       return this;
     }

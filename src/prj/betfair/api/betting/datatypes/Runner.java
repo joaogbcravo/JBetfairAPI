@@ -5,7 +5,7 @@ import prj.betfair.api.betting.datatypes.StartingPrices;
 import prj.betfair.api.betting.datatypes.ExchangePrices;
 import prj.betfair.api.betting.datatypes.Order;
 import prj.betfair.api.betting.datatypes.Match;
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Date;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -20,11 +20,11 @@ public class Runner {
   private final long selectionId;
   private final StartingPrices sp;
   private final Date removalDate;
-  private final ArrayList<Match> matches;
+  private final List<Match> matches;
   private final double totalMatched;
   private final double adjustmentFactor;
   private final ExchangePrices ex;
-  private final ArrayList<Order> orders;
+  private final List<Order> orders;
   private final double lastPriceTraded;
 
   public Runner(Builder builder) {
@@ -107,14 +107,14 @@ public class Runner {
   /**
    * @return orders List of orders in the market
    */
-  public ArrayList<Order> getOrders() {
+  public List<Order> getOrders() {
     return this.orders;
   }
 
   /**
    * @return matches List of matches (i.e, orders that have been fully or partially executed)
    */
-  public ArrayList<Match> getMatches() {
+  public List<Match> getMatches() {
     return this.matches;
   }
 
@@ -124,11 +124,11 @@ public class Runner {
     private long selectionId;
     private StartingPrices sp;
     private Date removalDate;
-    private ArrayList<Match> matches;
+    private List<Match> matches;
     private double totalMatched;
     private double adjustmentFactor;
     private ExchangePrices ex;
-    private ArrayList<Order> orders;
+    private List<Order> orders;
     private double lastPriceTraded;
 
     /**
@@ -207,7 +207,7 @@ public class Runner {
      * @param orders List of orders in the market
      * @return Builder
      */
-    public Builder withOrders(ArrayList<Order> orders) {
+    public Builder withOrders(List<Order> orders) {
       this.orders = orders;
       return this;
     }
@@ -218,7 +218,7 @@ public class Runner {
      * @param matches List of matches (i.e, orders that have been fully or partially executed)
      * @return Builder
      */
-    public Builder withMatches(ArrayList<Match> matches) {
+    public Builder withMatches(List<Match> matches) {
       this.matches = matches;
       return this;
     }

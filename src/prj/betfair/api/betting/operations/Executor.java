@@ -1,6 +1,6 @@
 package prj.betfair.api.betting.operations;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import prj.betfair.api.betting.datatypes.CancelExecutionReport;
 import prj.betfair.api.betting.datatypes.ClearedOrderSummaryReport;
@@ -32,37 +32,37 @@ public interface Executor {
   public abstract ClearedOrderSummaryReport execute(ListClearedOrdersOperation operation)
       throws APINGException;
 
-  public abstract ArrayList<CompetitionResult> execute(ListCompetitionsOperation operation)
+  public abstract List<CompetitionResult> execute(ListCompetitionsOperation operation)
       throws APINGException;
 
-  public abstract ArrayList<CountryCodeResult> execute(ListCountriesOperation operation)
+  public abstract List<CountryCodeResult> execute(ListCountriesOperation operation)
       throws APINGException;
 
   public abstract CurrentOrderSummaryReport execute(ListCurrentOrdersOperation operation)
       throws APINGException;
 
-  public abstract ArrayList<EventResult> execute(ListEventsOperation operation)
+  public abstract List<EventResult> execute(ListEventsOperation operation)
       throws APINGException;
 
-  public abstract ArrayList<EventTypeResult> execute(ListEventTypesOperation operation)
+  public abstract List<EventTypeResult> execute(ListEventTypesOperation operation)
       throws APINGException;
 
-  public abstract ArrayList<MarketBook> execute(ListMarketBookOperation operation)
+  public abstract List<MarketBook> execute(ListMarketBookOperation operation)
       throws APINGException;
 
-  public abstract ArrayList<MarketCatalogue> execute(ListMarketCatalogueOperation operation)
+  public abstract List<MarketCatalogue> execute(ListMarketCatalogueOperation operation)
       throws APINGException;
 
-  public abstract ArrayList<MarketProfitAndLoss> execute(ListMarketProfitAndLossOperation operation)
+  public abstract List<MarketProfitAndLoss> execute(ListMarketProfitAndLossOperation operation)
       throws APINGException;
 
-  public abstract ArrayList<MarketTypeResult> execute(ListMarketTypesOperation operation)
+  public abstract List<MarketTypeResult> execute(ListMarketTypesOperation operation)
       throws APINGException;
 
-  public abstract ArrayList<TimeRangeResult> execute(ListTimeRangesOperation operation)
+  public abstract List<TimeRangeResult> execute(ListTimeRangesOperation operation)
       throws APINGException;
 
-  public abstract ArrayList<VenueResult> execute(ListVenuesOperation operation)
+  public abstract List<VenueResult> execute(ListVenuesOperation operation)
       throws APINGException;
 
   public abstract PlaceExecutionReport execute(PlaceOrdersOperation operation)

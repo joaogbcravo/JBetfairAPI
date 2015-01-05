@@ -2,14 +2,14 @@ package prj.betfair.api.betting.datatypes;
 
 import prj.betfair.api.betting.datatypes.ExchangePrices;
 import prj.betfair.api.betting.datatypes.PriceSize;
-import java.util.ArrayList;
+import java.util.List;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 @JsonDeserialize(builder = ExchangePrices.Builder.class)
 public class ExchangePrices {
-  private final ArrayList<PriceSize> availableToBack;
-  private final ArrayList<PriceSize> availableToLay;
-  private final ArrayList<PriceSize> tradedVolume;
+  private final List<PriceSize> availableToBack;
+  private final List<PriceSize> availableToLay;
+  private final List<PriceSize> tradedVolume;
 
   public ExchangePrices(Builder builder) {
     this.availableToBack = builder.availableToBack;
@@ -20,28 +20,28 @@ public class ExchangePrices {
   /**
    * @return availableToBack
    */
-  public ArrayList<PriceSize> getAvailableToBack() {
+  public List<PriceSize> getAvailableToBack() {
     return this.availableToBack;
   }
 
   /**
    * @return availableToLay
    */
-  public ArrayList<PriceSize> getAvailableToLay() {
+  public List<PriceSize> getAvailableToLay() {
     return this.availableToLay;
   }
 
   /**
    * @return tradedVolume
    */
-  public ArrayList<PriceSize> getTradedVolume() {
+  public List<PriceSize> getTradedVolume() {
     return this.tradedVolume;
   }
 
   public static class Builder {
-    private ArrayList<PriceSize> availableToBack;
-    private ArrayList<PriceSize> availableToLay;
-    private ArrayList<PriceSize> tradedVolume;
+    private List<PriceSize> availableToBack;
+    private List<PriceSize> availableToLay;
+    private List<PriceSize> tradedVolume;
 
     public Builder() {}
 
@@ -51,7 +51,7 @@ public class ExchangePrices {
      * @param availableToBack
      * @return Builder
      */
-    public Builder withAvailableToBack(ArrayList<PriceSize> availableToBack) {
+    public Builder withAvailableToBack(List<PriceSize> availableToBack) {
       this.availableToBack = availableToBack;
       return this;
     }
@@ -62,7 +62,7 @@ public class ExchangePrices {
      * @param availableToLay
      * @return Builder
      */
-    public Builder withAvailableToLay(ArrayList<PriceSize> availableToLay) {
+    public Builder withAvailableToLay(List<PriceSize> availableToLay) {
       this.availableToLay = availableToLay;
       return this;
     }
@@ -73,7 +73,7 @@ public class ExchangePrices {
      * @param tradedVolume
      * @return Builder
      */
-    public Builder withTradedVolume(ArrayList<PriceSize> tradedVolume) {
+    public Builder withTradedVolume(List<PriceSize> tradedVolume) {
       this.tradedVolume = tradedVolume;
       return this;
     }

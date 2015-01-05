@@ -2,7 +2,7 @@ package prj.betfair.api.betting.datatypes;
 
 import prj.betfair.api.betting.datatypes.CurrentOrderSummaryReport;
 import prj.betfair.api.betting.datatypes.CurrentOrderSummary;
-import java.util.ArrayList;
+import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
@@ -11,7 +11,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
  */
 @JsonDeserialize(builder = CurrentOrderSummaryReport.Builder.class)
 public class CurrentOrderSummaryReport {
-  private final ArrayList<CurrentOrderSummary> currentOrders;
+  private final List<CurrentOrderSummary> currentOrders;
   private final boolean moreAvailable;
 
   public CurrentOrderSummaryReport(Builder builder) {
@@ -23,7 +23,7 @@ public class CurrentOrderSummaryReport {
    * @return currentOrders The list of current orders returned by your query. This will be a valid
    *         list (i.e. empty or non-empty but never 'null').
    */
-  public ArrayList<CurrentOrderSummary> getCurrentOrders() {
+  public List<CurrentOrderSummary> getCurrentOrders() {
     return this.currentOrders;
   }
 
@@ -37,7 +37,7 @@ public class CurrentOrderSummaryReport {
   }
 
   public static class Builder {
-    private ArrayList<CurrentOrderSummary> currentOrders;
+    private List<CurrentOrderSummary> currentOrders;
     private boolean moreAvailable;
 
     /**
@@ -47,7 +47,7 @@ public class CurrentOrderSummaryReport {
      *        Note that underlying data is highly time-dependent and the subsequent search orders
      *        query might return an empty result.
      */
-    public Builder(@JsonProperty("currentOrders") ArrayList<CurrentOrderSummary> currentOrders,
+    public Builder(@JsonProperty("currentOrders") List<CurrentOrderSummary> currentOrders,
         @JsonProperty("moreAvailable") boolean moreAvailable) {
       this.currentOrders = currentOrders;
       this.moreAvailable = moreAvailable;

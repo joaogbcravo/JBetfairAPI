@@ -3,7 +3,7 @@ package prj.betfair.api.betting.operations;
 import prj.betfair.api.betting.datatypes.UpdateInstruction;
 import prj.betfair.api.betting.datatypes.UpdateExecutionReport;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -13,7 +13,7 @@ import prj.betfair.api.betting.exceptions.APINGException;
  * Update non-exposure changing fields
  */
 public class UpdateOrdersOperation {
-  private final ArrayList<UpdateInstruction> instructions;
+  private final List<UpdateInstruction> instructions;
   private final Executor executor;
   private final String customerRef;
   private final String marketId;
@@ -35,7 +35,7 @@ public class UpdateOrdersOperation {
   /**
    * @return instructions
    */
-  public ArrayList<UpdateInstruction> getInstructions() {
+  public List<UpdateInstruction> getInstructions() {
     return this.instructions;
   }
 
@@ -52,7 +52,7 @@ public class UpdateOrdersOperation {
   }
 
   public static class Builder {
-    private ArrayList<UpdateInstruction> instructions;
+    private List<UpdateInstruction> instructions;
     private String customerRef;
     private String marketId;
     private Executor executor;
@@ -61,7 +61,7 @@ public class UpdateOrdersOperation {
      * @param instructions
      * @param marketId : The market id these orders are to be placed on
      */
-    public Builder(@JsonProperty("instructions") ArrayList<UpdateInstruction> instructions,
+    public Builder(@JsonProperty("instructions") List<UpdateInstruction> instructions,
         @JsonProperty("marketId") String marketId) {
       this.instructions = instructions;
       this.marketId = marketId;

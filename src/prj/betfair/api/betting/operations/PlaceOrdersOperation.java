@@ -3,7 +3,7 @@ package prj.betfair.api.betting.operations;
 import prj.betfair.api.betting.datatypes.PlaceInstruction;
 import prj.betfair.api.betting.datatypes.PlaceExecutionReport;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -15,7 +15,7 @@ import prj.betfair.api.betting.exceptions.APINGException;
  * be placed or none will be placed.
  */
 public class PlaceOrdersOperation {
-  private final ArrayList<PlaceInstruction> instructions;
+  private final List<PlaceInstruction> instructions;
   private final Executor executor;
   private final String customerRef;
   private final String marketId;
@@ -37,7 +37,7 @@ public class PlaceOrdersOperation {
   /**
    * @return instructions
    */
-  public ArrayList<PlaceInstruction> getInstructions() {
+  public List<PlaceInstruction> getInstructions() {
     return this.instructions;
   }
 
@@ -54,7 +54,7 @@ public class PlaceOrdersOperation {
   }
 
   public static class Builder {
-    private ArrayList<PlaceInstruction> instructions;
+    private List<PlaceInstruction> instructions;
     private String customerRef;
     private String marketId;
     private Executor executor;
@@ -63,7 +63,7 @@ public class PlaceOrdersOperation {
      * @param instructions
      * @param marketId : The market id these orders are to be placed on
      */
-    public Builder(@JsonProperty("instructions") ArrayList<PlaceInstruction> instructions,
+    public Builder(@JsonProperty("instructions") List<PlaceInstruction> instructions,
         @JsonProperty("marketId") String marketId) {
       this.instructions = instructions;
       this.marketId = marketId;

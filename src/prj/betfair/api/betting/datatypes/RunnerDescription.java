@@ -1,14 +1,14 @@
 package prj.betfair.api.betting.datatypes;
 
 import prj.betfair.api.betting.datatypes.RunnerDescription;
-import java.util.HashMap;
+import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 @JsonDeserialize(builder = RunnerDescription.Builder.class)
 public class RunnerDescription {
   private final String runnerName;
-  private final HashMap<String, String> metadata;
+  private final Map<String, String> metadata;
 
   public RunnerDescription(Builder builder) {
     this.runnerName = builder.runnerName;
@@ -25,13 +25,13 @@ public class RunnerDescription {
   /**
    * @return metadata The metadata for this runner, such as horse racing silks.
    */
-  public HashMap<String, String> getMetadata() {
+  public Map<String, String> getMetadata() {
     return this.metadata;
   }
 
   public static class Builder {
     private String runnerName;
-    private HashMap<String, String> metadata;
+    private Map<String, String> metadata;
 
     /**
      * @param runnerName : The name of the runner
@@ -46,7 +46,7 @@ public class RunnerDescription {
      * @param metadata The metadata for this runner, such as horse racing silks.
      * @return Builder
      */
-    public Builder withMetadata(HashMap<String, String> metadata) {
+    public Builder withMetadata(Map<String, String> metadata) {
       this.metadata = metadata;
       return this;
     }

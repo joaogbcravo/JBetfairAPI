@@ -2,7 +2,7 @@ package prj.betfair.api.betting.operations;
 
 import prj.betfair.api.betting.datatypes.CancelInstruction;
 import prj.betfair.api.betting.datatypes.CancelExecutionReport;
-import java.util.ArrayList;
+import java.util.List;
 
 import prj.betfair.api.betting.exceptions.APINGException;
 
@@ -11,7 +11,7 @@ import prj.betfair.api.betting.exceptions.APINGException;
  * a market. Only LIMIT orders an be cancelled or partially cancelled once placed.
  */
 public class CancelOrdersOperation {
-  private final ArrayList<CancelInstruction> instructions;
+  private final List<CancelInstruction> instructions;
   private final Executor executor;
   private final String customerRef;
   private final String marketId;
@@ -34,7 +34,7 @@ public class CancelOrdersOperation {
    * @return instructions All instructions need to be on the same market. If not supplied all bets
    *         on the market (if market id is passed) are fully cancelled
    */
-  public ArrayList<CancelInstruction> getInstructions() {
+  public List<CancelInstruction> getInstructions() {
     return this.instructions;
   }
 
@@ -51,7 +51,7 @@ public class CancelOrdersOperation {
   }
 
   public static class Builder {
-    private ArrayList<CancelInstruction> instructions;
+    private List<CancelInstruction> instructions;
     private String customerRef;
     private String marketId;
     private Executor executor;
@@ -76,7 +76,7 @@ public class CancelOrdersOperation {
      *        on the market (if market id is passed) are fully cancelled
      * @return Builder
      */
-    public Builder withInstructions(ArrayList<CancelInstruction> instructions) {
+    public Builder withInstructions(List<CancelInstruction> instructions) {
       this.instructions = instructions;
       return this;
     }

@@ -2,7 +2,7 @@ package prj.betfair.api.betting.datatypes;
 
 import prj.betfair.api.betting.datatypes.UpdateExecutionReport;
 import prj.betfair.api.betting.datatypes.UpdateInstructionReport;
-import java.util.ArrayList;
+import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
@@ -10,7 +10,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 public class UpdateExecutionReport {
   private final String status;
   private final String errorCode;
-  private final ArrayList<UpdateInstructionReport> instructionReports;
+  private final List<UpdateInstructionReport> instructionReports;
   private final String customerRef;
   private final String marketId;
 
@@ -53,14 +53,14 @@ public class UpdateExecutionReport {
   /**
    * @return instructionReports
    */
-  public ArrayList<UpdateInstructionReport> getInstructionReports() {
+  public List<UpdateInstructionReport> getInstructionReports() {
     return this.instructionReports;
   }
 
   public static class Builder {
     private String status;
     private String errorCode;
-    private ArrayList<UpdateInstructionReport> instructionReports;
+    private List<UpdateInstructionReport> instructionReports;
     private String customerRef;
     private String marketId;
 
@@ -110,7 +110,7 @@ public class UpdateExecutionReport {
      * @param instructionReports
      * @return Builder
      */
-    public Builder withInstructionReports(ArrayList<UpdateInstructionReport> instructionReports) {
+    public Builder withInstructionReports(List<UpdateInstructionReport> instructionReports) {
       this.instructionReports = instructionReports;
       return this;
     }

@@ -6,7 +6,7 @@ import prj.betfair.api.betting.datatypes.Event;
 import prj.betfair.api.betting.datatypes.Competition;
 import prj.betfair.api.betting.datatypes.EventType;
 import prj.betfair.api.betting.datatypes.MarketDescription;
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Date;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -24,7 +24,7 @@ public class MarketCatalogue {
   private final double totalMatched;
   private final String marketName;
   private final Event event;
-  private final ArrayList<RunnerCatalog> runners;
+  private final List<RunnerCatalog> runners;
 
   public MarketCatalogue(Builder builder) {
     this.description = builder.description;
@@ -78,7 +78,7 @@ public class MarketCatalogue {
   /**
    * @return runners The runners (selections) contained in the market
    */
-  public ArrayList<RunnerCatalog> getRunners() {
+  public List<RunnerCatalog> getRunners() {
     return this.runners;
   }
 
@@ -113,7 +113,7 @@ public class MarketCatalogue {
     private double totalMatched;
     private String marketName;
     private Event event;
-    private ArrayList<RunnerCatalog> runners;
+    private List<RunnerCatalog> runners;
 
     /**
      * @param marketName : The name of the market
@@ -166,7 +166,7 @@ public class MarketCatalogue {
      * @param runners The runners (selections) contained in the market
      * @return Builder
      */
-    public Builder withRunners(ArrayList<RunnerCatalog> runners) {
+    public Builder withRunners(List<RunnerCatalog> runners) {
       this.runners = runners;
       return this;
     }

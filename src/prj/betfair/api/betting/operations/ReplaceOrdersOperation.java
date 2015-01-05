@@ -3,7 +3,7 @@ package prj.betfair.api.betting.operations;
 import prj.betfair.api.betting.datatypes.ReplaceInstruction;
 import prj.betfair.api.betting.datatypes.ReplaceExecutionReport;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -16,7 +16,7 @@ import prj.betfair.api.betting.exceptions.APINGException;
  * cancellations will not be rolled back. See ReplaceInstruction.
  */
 public class ReplaceOrdersOperation {
-  private final ArrayList<ReplaceInstruction> instructions;
+  private final List<ReplaceInstruction> instructions;
   private final Executor executor;
   private final String customerRef;
   private final String marketId;
@@ -38,7 +38,7 @@ public class ReplaceOrdersOperation {
   /**
    * @return instructions
    */
-  public ArrayList<ReplaceInstruction> getInstructions() {
+  public List<ReplaceInstruction> getInstructions() {
     return this.instructions;
   }
 
@@ -55,7 +55,7 @@ public class ReplaceOrdersOperation {
   }
 
   public static class Builder {
-    private ArrayList<ReplaceInstruction> instructions;
+    private List<ReplaceInstruction> instructions;
     private String customerRef;
     private String marketId;
     private Executor executor;
@@ -64,7 +64,7 @@ public class ReplaceOrdersOperation {
      * @param instructions
      * @param marketId : The market id these orders are to be placed on
      */
-    public Builder(@JsonProperty("instructions") ArrayList<ReplaceInstruction> instructions,
+    public Builder(@JsonProperty("instructions") List<ReplaceInstruction> instructions,
         @JsonProperty("marketId") String marketId) {
       this.instructions = instructions;
       this.marketId = marketId;

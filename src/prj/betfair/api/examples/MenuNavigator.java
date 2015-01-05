@@ -2,6 +2,8 @@ package prj.betfair.api.examples;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Set;
+import java.util.List;
 
 import prj.betfair.api.betting.datatypes.ExchangePrices;
 import prj.betfair.api.betting.datatypes.MarketBook;
@@ -76,13 +78,13 @@ public class MenuNavigator {
       marketIds.add(currentItem.getId());
 
 
-      HashSet<PriceData> priceData = new HashSet<PriceData>();
+      Set<PriceData> priceData = new HashSet<PriceData>();
       priceData.add(PriceData.EX_BEST_OFFERS);
       PriceProjection priceProjection =
           new PriceProjection.Builder().withPriceData(priceData).build();
 
       /* Request a marketbook with the given price projection */
-      ArrayList<MarketBook> marketBooks = null;
+      List<MarketBook> marketBooks = null;
       try {
         marketBooks =
             opf.listMarketBook(marketIds).withPriceProjection(priceProjection).build().execute();

@@ -3,7 +3,7 @@ package prj.betfair.api.betting.datatypes;
 import prj.betfair.api.betting.datatypes.PriceProjection;
 import prj.betfair.api.betting.datatypes.ExBestOffersOverrides;
 import prj.betfair.api.betting.datatypes.SimpleTypes.PriceData;
-import java.util.HashSet;
+import java.util.Set;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 /***
@@ -14,7 +14,7 @@ public class PriceProjection {
   private final boolean virtualise;
   private final boolean rolloverStakes;
   private final ExBestOffersOverrides exBestOffersOverrides;
-  private final HashSet<PriceData> priceData;
+  private final Set<PriceData> priceData;
 
   public PriceProjection(Builder builder) {
     this.virtualise = builder.virtualise;
@@ -26,7 +26,7 @@ public class PriceProjection {
   /**
    * @return priceData The basic price data you want to receive in the response.
    */
-  public HashSet<PriceData> getPriceData() {
+  public Set<PriceData> getPriceData() {
     return this.priceData;
   }
 
@@ -60,7 +60,7 @@ public class PriceProjection {
     private boolean virtualise;
     private boolean rolloverStakes;
     private ExBestOffersOverrides exBestOffersOverrides;
-    private HashSet<PriceData> priceData;
+    private Set<PriceData> priceData;
 
     public Builder() {}
 
@@ -70,7 +70,7 @@ public class PriceProjection {
      * @param priceData The basic price data you want to receive in the response.
      * @return Builder
      */
-    public Builder withPriceData(HashSet<PriceData> priceData) {
+    public Builder withPriceData(Set<PriceData> priceData) {
       this.priceData = priceData;
       return this;
     }

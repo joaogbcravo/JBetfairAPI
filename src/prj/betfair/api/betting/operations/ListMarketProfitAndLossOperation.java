@@ -1,7 +1,7 @@
 package prj.betfair.api.betting.operations;
 
-import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -18,7 +18,7 @@ public class ListMarketProfitAndLossOperation {
   private final Executor executor;
   private final boolean includeBspBets;
   private final boolean includeSettledBets;
-  private final HashSet<String> marketIds;
+  private final Set<String> marketIds;
 
   public ListMarketProfitAndLossOperation(Builder builder) {
     this.netOfCommission = builder.netOfCommission;
@@ -31,7 +31,7 @@ public class ListMarketProfitAndLossOperation {
   /**
    * @return marketIds List of markets to calculate profit and loss
    */
-  public HashSet<String> getMarketIds() {
+  public Set<String> getMarketIds() {
     return this.marketIds;
   }
 
@@ -58,7 +58,7 @@ public class ListMarketProfitAndLossOperation {
     return this.netOfCommission;
   }
 
-  public ArrayList<MarketProfitAndLoss> execute() throws APINGException {
+  public List<MarketProfitAndLoss> execute() throws APINGException {
     return executor.execute(this);
   }
 
@@ -66,13 +66,13 @@ public class ListMarketProfitAndLossOperation {
     private boolean netOfCommission;
     private boolean includeBspBets;
     private boolean includeSettledBets;
-    private HashSet<String> marketIds;
+    private Set<String> marketIds;
     private Executor executor;
 
     /**
      * @param marketIds : List of markets to calculate profit and loss
      */
-    public Builder(@JsonProperty("marketIds") HashSet<String> marketIds) {
+    public Builder(@JsonProperty("marketIds") Set<String> marketIds) {
       this.marketIds = marketIds;
     }
 

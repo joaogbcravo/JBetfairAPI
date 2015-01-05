@@ -5,8 +5,8 @@ import prj.betfair.api.betting.datatypes.MarketFilter;
 import prj.betfair.api.betting.datatypes.SimpleTypes.MarketProjection;
 import prj.betfair.api.betting.datatypes.SimpleTypes.MarketSort;
 
-import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -19,7 +19,7 @@ import prj.betfair.api.betting.exceptions.APINGException;
  */
 public class ListMarketCatalogueOperation {
   private final MarketSort sort;
-  private final HashSet<MarketProjection> marketProjection;
+  private final Set<MarketProjection> marketProjection;
   private final String locale;
   private final int maxResults;
   private final MarketFilter filter;
@@ -45,7 +45,7 @@ public class ListMarketCatalogueOperation {
   /**
    * @return marketProjection The type and amount of data returned about the market.
    */
-  public HashSet<MarketProjection> getMarketProjection() {
+  public Set<MarketProjection> getMarketProjection() {
     return this.marketProjection;
   }
 
@@ -71,7 +71,7 @@ public class ListMarketCatalogueOperation {
     return this.locale;
   }
 
-  public ArrayList<MarketCatalogue> execute() throws APINGException {
+  public List<MarketCatalogue> execute() throws APINGException {
     return executor.execute(this);
   }
 
@@ -80,7 +80,7 @@ public class ListMarketCatalogueOperation {
     private MarketSort sort;
     private String locale;
     private int maxResults;
-    private HashSet<MarketProjection> marketProjection;
+    private Set<MarketProjection> marketProjection;
     private Executor executor;
 
     /**
@@ -101,7 +101,7 @@ public class ListMarketCatalogueOperation {
      * @param marketProjection The type and amount of data returned about the market.
      * @return Builder
      */
-    public Builder withMarketProjection(HashSet<MarketProjection> marketProjection) {
+    public Builder withMarketProjection(Set<MarketProjection> marketProjection) {
       this.marketProjection = marketProjection;
       return this;
     }

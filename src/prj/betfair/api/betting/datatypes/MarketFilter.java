@@ -4,26 +4,26 @@ import prj.betfair.api.betting.datatypes.MarketFilter;
 import prj.betfair.api.betting.datatypes.TimeRange;
 import prj.betfair.api.betting.datatypes.SimpleTypes.OrderStatus;
 import prj.betfair.api.betting.datatypes.SimpleTypes.MarketBettingType;
-import java.util.HashSet;
+import java.util.Set;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 @JsonDeserialize(builder = MarketFilter.Builder.class)
 public class MarketFilter {
-  private final HashSet<String> exchangeIds;
-  private final HashSet<String> eventTypeIds;
-  private final HashSet<MarketBettingType> marketBettingTypes;
+  private final Set<String> exchangeIds;
+  private final Set<String> eventTypeIds;
+  private final Set<MarketBettingType> marketBettingTypes;
   private final String textQuery;
   private final TimeRange marketStartTime;
-  private final HashSet<String> marketCountries;
+  private final Set<String> marketCountries;
   private final boolean bspOnly;
-  private final HashSet<String> eventIds;
-  private final HashSet<String> marketIds;
-  private final HashSet<String> venues;
-  private final HashSet<String> marketTypeCodes;
+  private final Set<String> eventIds;
+  private final Set<String> marketIds;
+  private final Set<String> venues;
+  private final Set<String> marketTypeCodes;
   private final boolean turnInPlayEnabled;
   private final boolean inPlayOnly;
-  private final HashSet<OrderStatus> withOrders;
-  private final HashSet<String> competitionIds;
+  private final Set<OrderStatus> withOrders;
+  private final Set<String> competitionIds;
 
   public MarketFilter(Builder builder) {
     this.exchangeIds = builder.exchangeIds;
@@ -56,7 +56,7 @@ public class MarketFilter {
    * @return exchangeIds Restrict markets by the Exchange where the market operates. Note: This is
    *         not currently in use and only entities for the current exchange will be returned.
    */
-  public HashSet<String> getExchangeIds() {
+  public Set<String> getExchangeIds() {
     return this.exchangeIds;
   }
 
@@ -64,28 +64,28 @@ public class MarketFilter {
    * @return eventTypeIds Restrict markets by event type associated with the market. (i.e.,
    *         Football, Hockey, etc)
    */
-  public HashSet<String> getEventTypeIds() {
+  public Set<String> getEventTypeIds() {
     return this.eventTypeIds;
   }
 
   /**
    * @return eventIds Restrict markets by the event id associated with the market.
    */
-  public HashSet<String> getEventIds() {
+  public Set<String> getEventIds() {
     return this.eventIds;
   }
 
   /**
    * @return competitionIds Restrict markets by the competitions associated with the market.
    */
-  public HashSet<String> getCompetitionIds() {
+  public Set<String> getCompetitionIds() {
     return this.competitionIds;
   }
 
   /**
    * @return marketIds Restrict markets by the market id associated with the market.
    */
-  public HashSet<String> getMarketIds() {
+  public Set<String> getMarketIds() {
     return this.marketIds;
   }
 
@@ -93,7 +93,7 @@ public class MarketFilter {
    * @return venues Restrict markets by the venue associated with the market. Currently only Horse
    *         Racing markets have venues.
    */
-  public HashSet<String> getVenues() {
+  public Set<String> getVenues() {
     return this.venues;
   }
 
@@ -125,14 +125,14 @@ public class MarketFilter {
    * @return marketBettingTypes Restrict to markets that match the betting type of the market (i.e.
    *         Odds, Asian Handicap Singles, or Asian Handicap Doubles
    */
-  public HashSet<MarketBettingType> getMarketBettingTypes() {
+  public Set<MarketBettingType> getMarketBettingTypes() {
     return this.marketBettingTypes;
   }
 
   /**
    * @return marketCountries Restrict to markets that are in the specified country or countries
    */
-  public HashSet<String> getMarketCountries() {
+  public Set<String> getMarketCountries() {
     return this.marketCountries;
   }
 
@@ -141,7 +141,7 @@ public class MarketFilter {
    *         MATCH_ODDS, HALF_TIME_SCORE). You should use this instead of relying on the market name
    *         as the market type codes are the same in all locales
    */
-  public HashSet<String> getMarketTypeCodes() {
+  public Set<String> getMarketTypeCodes() {
     return this.marketTypeCodes;
   }
 
@@ -156,26 +156,26 @@ public class MarketFilter {
   /**
    * @return withOrders Restrict to markets that I have one or more orders in these status.
    */
-  public HashSet<OrderStatus> getWithOrders() {
+  public Set<OrderStatus> getWithOrders() {
     return this.withOrders;
   }
 
   public static class Builder {
-    private HashSet<String> exchangeIds;
-    private HashSet<String> eventTypeIds;
-    private HashSet<MarketBettingType> marketBettingTypes;
+    private Set<String> exchangeIds;
+    private Set<String> eventTypeIds;
+    private Set<MarketBettingType> marketBettingTypes;
     private String textQuery;
     private TimeRange marketStartTime;
-    private HashSet<String> marketCountries;
+    private Set<String> marketCountries;
     private boolean bspOnly;
-    private HashSet<String> eventIds;
-    private HashSet<String> marketIds;
-    private HashSet<String> venues;
-    private HashSet<String> marketTypeCodes;
+    private Set<String> eventIds;
+    private Set<String> marketIds;
+    private Set<String> venues;
+    private Set<String> marketTypeCodes;
     private boolean turnInPlayEnabled;
     private boolean inPlayOnly;
-    private HashSet<OrderStatus> withOrders;
-    private HashSet<String> competitionIds;
+    private Set<OrderStatus> withOrders;
+    private Set<String> competitionIds;
 
     public Builder() {}
 
@@ -199,7 +199,7 @@ public class MarketFilter {
      *        not currently in use and only entities for the current exchange will be returned.
      * @return Builder
      */
-    public Builder withExchangeIds(HashSet<String> exchangeIds) {
+    public Builder withExchangeIds(Set<String> exchangeIds) {
       this.exchangeIds = exchangeIds;
       return this;
     }
@@ -211,7 +211,7 @@ public class MarketFilter {
      *        Football, Hockey, etc)
      * @return Builder
      */
-    public Builder withEventTypeIds(HashSet<String> eventTypeIds) {
+    public Builder withEventTypeIds(Set<String> eventTypeIds) {
       this.eventTypeIds = eventTypeIds;
       return this;
     }
@@ -222,7 +222,7 @@ public class MarketFilter {
      * @param eventIds Restrict markets by the event id associated with the market.
      * @return Builder
      */
-    public Builder withEventIds(HashSet<String> eventIds) {
+    public Builder withEventIds(Set<String> eventIds) {
       this.eventIds = eventIds;
       return this;
     }
@@ -233,7 +233,7 @@ public class MarketFilter {
      * @param competitionIds Restrict markets by the competitions associated with the market.
      * @return Builder
      */
-    public Builder withCompetitionIds(HashSet<String> competitionIds) {
+    public Builder withCompetitionIds(Set<String> competitionIds) {
       this.competitionIds = competitionIds;
       return this;
     }
@@ -244,7 +244,7 @@ public class MarketFilter {
      * @param marketIds Restrict markets by the market id associated with the market.
      * @return Builder
      */
-    public Builder withMarketIds(HashSet<String> marketIds) {
+    public Builder withMarketIds(Set<String> marketIds) {
       this.marketIds = marketIds;
       return this;
     }
@@ -256,7 +256,7 @@ public class MarketFilter {
      *        Racing markets have venues.
      * @return Builder
      */
-    public Builder withVenues(HashSet<String> venues) {
+    public Builder withVenues(Set<String> venues) {
       this.venues = venues;
       return this;
     }
@@ -304,7 +304,7 @@ public class MarketFilter {
      *        Odds, Asian Handicap Singles, or Asian Handicap Doubles
      * @return Builder
      */
-    public Builder withMarketBettingTypes(HashSet<MarketBettingType> marketBettingTypes) {
+    public Builder withMarketBettingTypes(Set<MarketBettingType> marketBettingTypes) {
       this.marketBettingTypes = marketBettingTypes;
       return this;
     }
@@ -315,7 +315,7 @@ public class MarketFilter {
      * @param marketCountries Restrict to markets that are in the specified country or countries
      * @return Builder
      */
-    public Builder withMarketCountries(HashSet<String> marketCountries) {
+    public Builder withMarketCountries(Set<String> marketCountries) {
       this.marketCountries = marketCountries;
       return this;
     }
@@ -328,7 +328,7 @@ public class MarketFilter {
      *        name as the market type codes are the same in all locales
      * @return Builder
      */
-    public Builder withMarketTypeCodes(HashSet<String> marketTypeCodes) {
+    public Builder withMarketTypeCodes(Set<String> marketTypeCodes) {
       this.marketTypeCodes = marketTypeCodes;
       return this;
     }
@@ -351,7 +351,7 @@ public class MarketFilter {
      * @param withOrders Restrict to markets that I have one or more orders in these status.
      * @return Builder
      */
-    public Builder withWithOrders(HashSet<OrderStatus> withOrders) {
+    public Builder withWithOrders(Set<OrderStatus> withOrders) {
       this.withOrders = withOrders;
       return this;
     }

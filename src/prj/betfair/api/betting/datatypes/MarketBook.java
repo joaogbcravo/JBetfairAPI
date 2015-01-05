@@ -2,7 +2,7 @@ package prj.betfair.api.betting.datatypes;
 
 import prj.betfair.api.betting.datatypes.MarketBook;
 import prj.betfair.api.betting.datatypes.Runner;
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Date;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -28,7 +28,7 @@ public class MarketBook {
   private final boolean inplay;
   private final int numberOfActiveRunners;
   private final double totalAvailable;
-  private final ArrayList<Runner> runners;
+  private final List<Runner> runners;
 
   public MarketBook(Builder builder) {
     this.status = builder.status;
@@ -171,7 +171,7 @@ public class MarketBook {
   /**
    * @return runners Information about the runners (selections) in the market.
    */
-  public ArrayList<Runner> getRunners() {
+  public List<Runner> getRunners() {
     return this.runners;
   }
 
@@ -192,7 +192,7 @@ public class MarketBook {
     private boolean inplay;
     private int numberOfActiveRunners;
     private double totalAvailable;
-    private ArrayList<Runner> runners;
+    private List<Runner> runners;
 
     /**
      * @param isMarketDataDelayed : True if the data returned by listMarketBook will be delayed. The
@@ -370,7 +370,7 @@ public class MarketBook {
      * @param runners Information about the runners (selections) in the market.
      * @return Builder
      */
-    public Builder withRunners(ArrayList<Runner> runners) {
+    public Builder withRunners(List<Runner> runners) {
       this.runners = runners;
       return this;
     }

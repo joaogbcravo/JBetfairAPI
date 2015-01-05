@@ -1,20 +1,20 @@
 package prj.betfair.api.betting.navigation;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class NavigationItem extends ItemData {
   private NavigationItem parent;
-  private ArrayList<NavigationItem> children;
+  private List<NavigationItem> children;
 
   public NavigationItem() {};
 
-  public ArrayList<NavigationItem> getChildren() {
+  public List<NavigationItem> getChildren() {
     return children;
   }
 
-  public void setChildren(ArrayList<NavigationItem> children) {
+  public void setChildren(List<NavigationItem> children) {
     this.children = children;
     for (NavigationItem item : this.children) {
       item.setParent(this);

@@ -7,7 +7,7 @@ import prj.betfair.api.betting.datatypes.SimpleTypes.Side;
 import prj.betfair.api.betting.datatypes.SimpleTypes.GroupBy;
 import prj.betfair.api.betting.datatypes.SimpleTypes.BetStatus;
 
-import java.util.HashSet;
+import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -18,18 +18,18 @@ import prj.betfair.api.betting.exceptions.APINGException;
  */
 public class ListClearedOrdersOperation {
   private final int fromRecord;
-  private final HashSet<String> eventTypeIds;
+  private final Set<String> eventTypeIds;
   private final int recordCount;
   private final String locale;
-  private final HashSet<String> eventIds;
-  private final HashSet<String> marketIds;
+  private final Set<String> eventIds;
+  private final Set<String> marketIds;
   private final GroupBy groupBy;
   private final BetStatus betStatus;
   private final boolean includeItemDescription;
   private final TimeRange settledDateRange;
   private final Executor executor;
-  private final HashSet<String> betIds;
-  private final HashSet<RunnerId> runnerIds;
+  private final Set<String> betIds;
+  private final Set<RunnerId> runnerIds;
   private final Side side;
 
   public ListClearedOrdersOperation(Builder builder) {
@@ -59,35 +59,35 @@ public class ListClearedOrdersOperation {
   /**
    * @return eventTypeIds Optionally restricts the results to the specified Event Type IDs.
    */
-  public HashSet<String> getEventTypeIds() {
+  public Set<String> getEventTypeIds() {
     return this.eventTypeIds;
   }
 
   /**
    * @return eventIds Optionally restricts the results to the specified Event IDs.
    */
-  public HashSet<String> getEventIds() {
+  public Set<String> getEventIds() {
     return this.eventIds;
   }
 
   /**
    * @return marketIds Optionally restricts the results to the specified market IDs.
    */
-  public HashSet<String> getMarketIds() {
+  public Set<String> getMarketIds() {
     return this.marketIds;
   }
 
   /**
    * @return runnerIds Optionally restricts the results to the specified Runners.
    */
-  public HashSet<RunnerId> getRunnerIds() {
+  public Set<RunnerId> getRunnerIds() {
     return this.runnerIds;
   }
 
   /**
    * @return betIds Optionally restricts the results to the specified bet IDs.
    */
-  public HashSet<String> getBetIds() {
+  public Set<String> getBetIds() {
     return this.betIds;
   }
 
@@ -155,17 +155,17 @@ public class ListClearedOrdersOperation {
 
   public static class Builder {
     private int fromRecord;
-    private HashSet<String> eventTypeIds;
+    private Set<String> eventTypeIds;
     private int recordCount;
     private String locale;
-    private HashSet<String> eventIds;
-    private HashSet<String> betIds;
+    private Set<String> eventIds;
+    private Set<String> betIds;
     private GroupBy groupBy;
     private BetStatus betStatus;
     private boolean includeItemDescription;
     private TimeRange settledDateRange;
-    private HashSet<String> marketIds;
-    private HashSet<RunnerId> runnerIds;
+    private Set<String> marketIds;
+    private Set<RunnerId> runnerIds;
     private Side side;
     private Executor executor;
 
@@ -182,7 +182,7 @@ public class ListClearedOrdersOperation {
      * @param eventTypeIds Optionally restricts the results to the specified Event Type IDs.
      * @return Builder
      */
-    public Builder withEventTypeIds(HashSet<String> eventTypeIds) {
+    public Builder withEventTypeIds(Set<String> eventTypeIds) {
       this.eventTypeIds = eventTypeIds;
       return this;
     }
@@ -193,7 +193,7 @@ public class ListClearedOrdersOperation {
      * @param eventIds Optionally restricts the results to the specified Event IDs.
      * @return Builder
      */
-    public Builder withEventIds(HashSet<String> eventIds) {
+    public Builder withEventIds(Set<String> eventIds) {
       this.eventIds = eventIds;
       return this;
     }
@@ -204,7 +204,7 @@ public class ListClearedOrdersOperation {
      * @param marketIds Optionally restricts the results to the specified market IDs.
      * @return Builder
      */
-    public Builder withMarketIds(HashSet<String> marketIds) {
+    public Builder withMarketIds(Set<String> marketIds) {
       this.marketIds = marketIds;
       return this;
     }
@@ -215,7 +215,7 @@ public class ListClearedOrdersOperation {
      * @param runnerIds Optionally restricts the results to the specified Runners.
      * @return Builder
      */
-    public Builder withRunnerIds(HashSet<RunnerId> runnerIds) {
+    public Builder withRunnerIds(Set<RunnerId> runnerIds) {
       this.runnerIds = runnerIds;
       return this;
     }
@@ -226,7 +226,7 @@ public class ListClearedOrdersOperation {
      * @param betIds Optionally restricts the results to the specified bet IDs.
      * @return Builder
      */
-    public Builder withBetIds(HashSet<String> betIds) {
+    public Builder withBetIds(Set<String> betIds) {
       this.betIds = betIds;
       return this;
     }

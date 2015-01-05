@@ -1,6 +1,6 @@
 package prj.betfair.api.betting.operations;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -38,7 +38,7 @@ public class ListCompetitionsOperation {
     return this.locale;
   }
 
-  public ArrayList<CompetitionResult> execute() throws APINGException {
+  public List<CompetitionResult> execute() throws APINGException {
     return executor.execute(this);
   }
 

@@ -1,7 +1,7 @@
 package prj.betfair.api.betting.operations;
 
-import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import prj.betfair.api.betting.datatypes.MarketFilter;
 import prj.betfair.api.betting.datatypes.PlaceInstruction;
@@ -91,7 +91,7 @@ public class OperationBuilder {
    * 
    * @return ListMarketBookOperation.Builder
    */
-  public ListMarketBookOperation.Builder listMarketBook(ArrayList<String> marketIds) {
+  public ListMarketBookOperation.Builder listMarketBook(List<String> marketIds) {
     return new ListMarketBookOperation.Builder(marketIds).withExecutor(executor);
   }
 
@@ -111,7 +111,7 @@ public class OperationBuilder {
    * 
    * @return ListMarketProfitAndLossOperation.Builder
    */
-  public ListMarketProfitAndLossOperation.Builder listMarketProfitAndLoss(HashSet<String> marketIds) {
+  public ListMarketProfitAndLossOperation.Builder listMarketProfitAndLoss(Set<String> marketIds) {
     return new ListMarketProfitAndLossOperation.Builder(marketIds).withExecutor(executor);
   }
 
@@ -149,7 +149,7 @@ public class OperationBuilder {
    * @return PlaceOrdersOperation.Builder
    */
   public PlaceOrdersOperation.Builder placeOrders(String marketId,
-      ArrayList<PlaceInstruction> instructions) {
+      List<PlaceInstruction> instructions) {
     return new PlaceOrdersOperation.Builder(instructions, marketId).withExecutor(executor);
   }
 
@@ -159,7 +159,7 @@ public class OperationBuilder {
    * @return ReplaceOrdersOperation.Builder
    */
   public ReplaceOrdersOperation.Builder replaceOrders(String marketId,
-      ArrayList<ReplaceInstruction> instructions) {
+      List<ReplaceInstruction> instructions) {
     return new ReplaceOrdersOperation.Builder(instructions, marketId).withExecutor(executor);
   }
 
@@ -169,7 +169,7 @@ public class OperationBuilder {
    * @return UpdateOrdersOperation.Builder
    */
   public UpdateOrdersOperation.Builder updateOrders(String marketId,
-      ArrayList<UpdateInstruction> instructions) {
+      List<UpdateInstruction> instructions) {
     return new UpdateOrdersOperation.Builder(instructions, marketId).withExecutor(executor);
   }
 

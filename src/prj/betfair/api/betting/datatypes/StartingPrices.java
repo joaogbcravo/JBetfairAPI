@@ -2,7 +2,7 @@ package prj.betfair.api.betting.datatypes;
 
 import prj.betfair.api.betting.datatypes.StartingPrices;
 import prj.betfair.api.betting.datatypes.PriceSize;
-import java.util.ArrayList;
+import java.util.List;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 /***
@@ -11,10 +11,10 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 @JsonDeserialize(builder = StartingPrices.Builder.class)
 public class StartingPrices {
   private final double nearPrice;
-  private final ArrayList<PriceSize> backStakeTaken;
+  private final List<PriceSize> backStakeTaken;
   private final double farPrice;
   private final double actualSP;
-  private final ArrayList<PriceSize> layLiabilityTaken;
+  private final List<PriceSize> layLiabilityTaken;
 
   public StartingPrices(Builder builder) {
     this.nearPrice = builder.nearPrice;
@@ -45,14 +45,14 @@ public class StartingPrices {
   /**
    * @return backStakeTaken
    */
-  public ArrayList<PriceSize> getBackStakeTaken() {
+  public List<PriceSize> getBackStakeTaken() {
     return this.backStakeTaken;
   }
 
   /**
    * @return layLiabilityTaken
    */
-  public ArrayList<PriceSize> getLayLiabilityTaken() {
+  public List<PriceSize> getLayLiabilityTaken() {
     return this.layLiabilityTaken;
   }
 
@@ -66,10 +66,10 @@ public class StartingPrices {
 
   public static class Builder {
     private double nearPrice;
-    private ArrayList<PriceSize> backStakeTaken;
+    private List<PriceSize> backStakeTaken;
     private double farPrice;
     private double actualSP;
-    private ArrayList<PriceSize> layLiabilityTaken;
+    private List<PriceSize> layLiabilityTaken;
 
     public Builder() {}
 
@@ -105,7 +105,7 @@ public class StartingPrices {
      * @param backStakeTaken
      * @return Builder
      */
-    public Builder withBackStakeTaken(ArrayList<PriceSize> backStakeTaken) {
+    public Builder withBackStakeTaken(List<PriceSize> backStakeTaken) {
       this.backStakeTaken = backStakeTaken;
       return this;
     }
@@ -116,7 +116,7 @@ public class StartingPrices {
      * @param layLiabilityTaken
      * @return Builder
      */
-    public Builder withLayLiabilityTaken(ArrayList<PriceSize> layLiabilityTaken) {
+    public Builder withLayLiabilityTaken(List<PriceSize> layLiabilityTaken) {
       this.layLiabilityTaken = layLiabilityTaken;
       return this;
     }

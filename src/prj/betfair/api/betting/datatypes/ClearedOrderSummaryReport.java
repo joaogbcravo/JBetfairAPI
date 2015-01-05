@@ -2,7 +2,7 @@ package prj.betfair.api.betting.datatypes;
 
 import prj.betfair.api.betting.datatypes.ClearedOrderSummary;
 import prj.betfair.api.betting.datatypes.ClearedOrderSummaryReport;
-import java.util.ArrayList;
+import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
@@ -12,7 +12,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 @JsonDeserialize(builder = ClearedOrderSummaryReport.Builder.class)
 public class ClearedOrderSummaryReport {
   private final boolean moreAvailable;
-  private final ArrayList<ClearedOrderSummary> clearedOrders;
+  private final List<ClearedOrderSummary> clearedOrders;
 
   public ClearedOrderSummaryReport(Builder builder) {
     this.moreAvailable = builder.moreAvailable;
@@ -23,7 +23,7 @@ public class ClearedOrderSummaryReport {
    * @return clearedOrders The list of cleared orders returned by your query. This will be a valid
    *         list (i.e. empty or non-empty but never 'null').
    */
-  public ArrayList<ClearedOrderSummary> getClearedOrders() {
+  public List<ClearedOrderSummary> getClearedOrders() {
     return this.clearedOrders;
   }
 
@@ -38,7 +38,7 @@ public class ClearedOrderSummaryReport {
 
   public static class Builder {
     private boolean moreAvailable;
-    private ArrayList<ClearedOrderSummary> clearedOrders;
+    private List<ClearedOrderSummary> clearedOrders;
 
     /**
      * @param moreAvailable : Indicates whether there are further result items beyond this page.
@@ -48,7 +48,7 @@ public class ClearedOrderSummaryReport {
      *        valid list (i.e. empty or non-empty but never 'null').
      */
     public Builder(@JsonProperty("moreAvailable") boolean moreAvailable,
-        @JsonProperty("clearedOrders") ArrayList<ClearedOrderSummary> clearedOrders) {
+        @JsonProperty("clearedOrders") List<ClearedOrderSummary> clearedOrders) {
       this.moreAvailable = moreAvailable;
       this.clearedOrders = clearedOrders;
     }

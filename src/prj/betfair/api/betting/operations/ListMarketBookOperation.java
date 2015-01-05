@@ -5,7 +5,7 @@ import prj.betfair.api.betting.datatypes.PriceProjection;
 import prj.betfair.api.betting.datatypes.SimpleTypes.MatchProjection;
 import prj.betfair.api.betting.datatypes.SimpleTypes.OrderProjection;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -20,7 +20,7 @@ public class ListMarketBookOperation {
   private final PriceProjection priceProjection;
   private final String locale;
   private final String currencyCode;
-  private final ArrayList<String> marketIds;
+  private final List<String> marketIds;
   private final MatchProjection matchProjection;
   private final Executor executor;
   private final OrderProjection orderProjection;
@@ -39,7 +39,7 @@ public class ListMarketBookOperation {
    * @return marketIds One or more market ids. The number of markets returned depends on the amount
    *         of data you request via the price projection.
    */
-  public ArrayList<String> getMarketIds() {
+  public List<String> getMarketIds() {
     return this.marketIds;
   }
 
@@ -79,7 +79,7 @@ public class ListMarketBookOperation {
     return this.locale;
   }
 
-  public ArrayList<MarketBook> execute() throws APINGException {
+  public List<MarketBook> execute() throws APINGException {
     return executor.execute(this);
   }
 
@@ -87,7 +87,7 @@ public class ListMarketBookOperation {
     private PriceProjection priceProjection;
     private String locale;
     private String currencyCode;
-    private ArrayList<String> marketIds;
+    private List<String> marketIds;
     private MatchProjection matchProjection;
     private OrderProjection orderProjection;
     private Executor executor;
@@ -96,7 +96,7 @@ public class ListMarketBookOperation {
      * @param marketIds : One or more market ids. The number of markets returned depends on the
      *        amount of data you request via the price projection.
      */
-    public Builder(@JsonProperty("marketIds") ArrayList<String> marketIds) {
+    public Builder(@JsonProperty("marketIds") List<String> marketIds) {
       this.marketIds = marketIds;
     }
 

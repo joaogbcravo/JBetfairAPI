@@ -2,7 +2,7 @@ package prj.betfair.api.betting.datatypes;
 
 import prj.betfair.api.betting.datatypes.MarketProfitAndLoss;
 import prj.betfair.api.betting.datatypes.RunnerProfitAndLoss;
-import java.util.ArrayList;
+import java.util.List;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 /***
@@ -11,7 +11,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 @JsonDeserialize(builder = MarketProfitAndLoss.Builder.class)
 public class MarketProfitAndLoss {
   private final double commissionApplied;
-  private final ArrayList<RunnerProfitAndLoss> profitAndLosses;
+  private final List<RunnerProfitAndLoss> profitAndLosses;
   private final String marketId;
 
   public MarketProfitAndLoss(Builder builder) {
@@ -38,13 +38,13 @@ public class MarketProfitAndLoss {
   /**
    * @return profitAndLosses Calculated profit and loss data.
    */
-  public ArrayList<RunnerProfitAndLoss> getProfitAndLosses() {
+  public List<RunnerProfitAndLoss> getProfitAndLosses() {
     return this.profitAndLosses;
   }
 
   public static class Builder {
     private double commissionApplied;
-    private ArrayList<RunnerProfitAndLoss> profitAndLosses;
+    private List<RunnerProfitAndLoss> profitAndLosses;
     private String marketId;
 
     public Builder() {}
@@ -78,7 +78,7 @@ public class MarketProfitAndLoss {
      * @param profitAndLosses Calculated profit and loss data.
      * @return Builder
      */
-    public Builder withProfitAndLosses(ArrayList<RunnerProfitAndLoss> profitAndLosses) {
+    public Builder withProfitAndLosses(List<RunnerProfitAndLoss> profitAndLosses) {
       this.profitAndLosses = profitAndLosses;
       return this;
     }

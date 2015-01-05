@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Test;
 
@@ -23,7 +23,7 @@ public class MarketProfitAndLossTest {
     MarketProfitAndLoss mpf =
         mapper.readValue(new File("./src/test/resources/ListMarketProfitAndLossOperation.json"),
             MarketProfitAndLoss.class);
-    ArrayList<RunnerProfitAndLoss> profitAndLosses = mpf.getProfitAndLosses();
+    List<RunnerProfitAndLoss> profitAndLosses = mpf.getProfitAndLosses();
     assertEquals(profitAndLosses.get(0).getIfWin(), -30.0, 0);
     assertEquals(profitAndLosses.get(0).getIfLose(), 0.0, 0);
     assertEquals(profitAndLosses.get(0).getSelectionId(), 48756);
