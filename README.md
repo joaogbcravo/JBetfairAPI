@@ -61,13 +61,13 @@ Add the following to your pom.xml
     Set<String> countries = new HashSet<String>();
     countries.add("GB");
     
-    // Create a market filter that filters out inplay Soccer competitions
+    // Create a market filter that filters out Soccer events in Great Britain (GB)
     MarketFilter filter = new MarketFilter.Builder()
     .withTextQuery("Soccer")
     .withMarketCountries(countries)
     .build();
     
-    // Execute the listComptetions operation
+    // Execute the listEvents operation
     ArrayList<EventResult> results = opf.listEvents(filter).build().execute();
     
     // Print retrieved competitions
