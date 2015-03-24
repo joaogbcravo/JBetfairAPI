@@ -30,7 +30,7 @@ import prj.betfair.api.betting.datatypes.UpdateExecutionReport;
 import prj.betfair.api.betting.datatypes.VenueResult;
 import prj.betfair.api.betting.exceptions.APINGException;
 import prj.betfair.api.betting.exceptions.ExceptionWrapper;
-import prj.betfair.api.betting.navigation.NavigationItem;
+import prj.betfair.api.betting.navigation.Item;
 import prj.betfair.api.login.ApplicationToken;
 
 public class BetfairExecutor implements Executor {
@@ -53,7 +53,8 @@ public class BetfairExecutor implements Executor {
   private static final String REPLACE_ORDERS = "replaceOrders/";
   private static final String UPDATE_ORDERS = "updateOrders/";
   private static final String BASE_PATH = "https://api.betfair.com/exchange/betting/rest/v1.0";
-
+  /*private static final String BASE_PATH_AU =
+      "https://api-au.betfair.com/exchange/betting/rest/v1.0";*/
   private Client client;
   private ApplicationToken applicationToken;
 
@@ -119,18 +120,12 @@ public class BetfairExecutor implements Executor {
   public ArrayList<MarketBook> execute(ListMarketBookOperation operation) throws APINGException {
     return this.<ListMarketBookOperation>post(operation, LIST_MARKET_BOOK).readEntity(
         new GenericType<ArrayList<MarketBook>>() {});
-
-    /*
-     * ObjectMapper mapper = new ObjectMapper(); try { return mapper.readValue(new
-     * File("./marketBook.txt"), mapper.getTypeFactory().constructCollectionType( ArrayList.class,
-     * MarketBook.class)); } catch (IOException e) { // TODO Auto-generated catch block
-     * e.printStackTrace(); System.exit(0); } return null;
-     */
   }
 
   @Override
   public ArrayList<MarketCatalogue> execute(ListMarketCatalogueOperation operation)
       throws APINGException {
+
     return this.<ListMarketCatalogueOperation>post(operation, LIST_MARKET_CATALOGUE).readEntity(
         new GenericType<ArrayList<MarketCatalogue>>() {});
 
@@ -188,8 +183,8 @@ public class BetfairExecutor implements Executor {
   }
 
   @Override
-  public NavigationItem getNavigationData() throws APINGException {
-    return this.get(MENU).readEntity(NavigationItem.class);
+  public Item getNavigationData() throws APINGException {
+    return this.get(MENU).readEntity(Item.class);
   }
 
   private Response get(String path) throws APINGException {

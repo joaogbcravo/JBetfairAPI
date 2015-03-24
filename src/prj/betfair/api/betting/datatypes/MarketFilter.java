@@ -4,27 +4,34 @@ import prj.betfair.api.betting.datatypes.MarketFilter;
 import prj.betfair.api.betting.datatypes.TimeRange;
 import prj.betfair.api.betting.datatypes.SimpleTypes.OrderStatus;
 import prj.betfair.api.betting.datatypes.SimpleTypes.MarketBettingType;
+
 import java.util.Set;
+
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 @JsonDeserialize(builder = MarketFilter.Builder.class)
+@JsonSerialize(include=JsonSerialize.Inclusion.NON_DEFAULT)
 public class MarketFilter {
-  private final Set<String> exchangeIds;
-  private final Set<String> eventTypeIds;
-  private final Set<MarketBettingType> marketBettingTypes;
-  private final String textQuery;
-  private final TimeRange marketStartTime;
-  private final Set<String> marketCountries;
-  private final boolean bspOnly;
-  private final Set<String> eventIds;
-  private final Set<String> marketIds;
-  private final Set<String> venues;
-  private final Set<String> marketTypeCodes;
-  private final boolean turnInPlayEnabled;
-  private final boolean inPlayOnly;
-  private final Set<OrderStatus> withOrders;
-  private final Set<String> competitionIds;
+  private  Set<String> exchangeIds;
+  private  Set<String> eventTypeIds;
+  private  Set<MarketBettingType> marketBettingTypes;
+  private  String textQuery;
+  private  TimeRange marketStartTime;
+  private  Set<String> marketCountries;
+  private  boolean bspOnly;
+  private  Set<String> eventIds;
+  private  Set<String> marketIds;
+  private  Set<String> venues;
+  private  Set<String> marketTypeCodes;
+  private  boolean turnInPlayEnabled;
+  private  boolean inPlayOnly;
+  private  Set<OrderStatus> withOrders;
+  private  Set<String> competitionIds;
 
+  public MarketFilter() {
+    
+  }
   public MarketFilter(Builder builder) {
     this.exchangeIds = builder.exchangeIds;
     this.eventTypeIds = builder.eventTypeIds;

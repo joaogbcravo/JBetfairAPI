@@ -41,10 +41,9 @@ public class Application {
         passw = String.copyValueOf(c.readPassword("password: "));
     }
 
-    // Login to Betfair
     ApplicationToken token = BetfairAPI.login(user, passw, applKey);
 
-    // Create an Executor and supply it with the token retrieved at login.
+    // Create an Executor using the token retrieved at login.
     Executor exec = new BetfairExecutor();
     exec.setApplicationToken(token);
 
@@ -64,16 +63,14 @@ public class Application {
     // The navigationData download succeeded, print the root item and start navigation
     nav.printCurrentItem();
     while (true) {
-
       System.out.println("Selection: ");
       try {
         int sel = Integer.parseInt(br.readLine());
         if (sel == 0) {
-            nav.goToParent();
+          nav.goToParent();
         } else {
           nav.goToChild(sel);
         }
-
       } catch (IOException e) {
         System.out.println("IO Exception");
         System.exit(-1);
@@ -82,5 +79,4 @@ public class Application {
       }
     }
   }
-
 }

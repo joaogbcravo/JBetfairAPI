@@ -1,6 +1,6 @@
 package prj.betfair.api.examples;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.List;
@@ -11,21 +11,22 @@ import prj.betfair.api.betting.datatypes.PriceProjection;
 import prj.betfair.api.betting.datatypes.Runner;
 import prj.betfair.api.betting.datatypes.SimpleTypes.PriceData;
 import prj.betfair.api.betting.exceptions.APINGException;
-import prj.betfair.api.betting.navigation.NavigationItem;
+import prj.betfair.api.betting.navigation.Item;
+import prj.betfair.api.betting.navigation.MarketItem;
 import prj.betfair.api.betting.operations.OperationBuilder;
 
 public class MenuNavigator {
-  private NavigationItem root;
-  private NavigationItem currentItem;
+  private Item root;
+  private Item currentItem;
   private OperationBuilder opf;
 
-  public MenuNavigator(NavigationItem rootItem, OperationBuilder operationFactory) {
+  public MenuNavigator(Item rootItem, OperationBuilder operationFactory) {
     this.root = rootItem;
     this.currentItem = root;
     this.opf = operationFactory;
   }
 
-  public void setRootItem(NavigationItem rootItem) {
+  public void setRootItem(Item rootItem) {
     this.root = rootItem;
   }
   
@@ -50,58 +51,25 @@ public class MenuNavigator {
   }
 
   public void printCurrentItem() {
-    if (!currentItem.getName().equals("ROOT")) {
-      System.out.format("%-20s %s\n", "name:", currentItem.getName());
-      System.out.format("%-20s %s\n", "id:", currentItem.getId());
-      if (currentItem.getType().equals("EVENT") || currentItem.getType().equals("RACE")) {
-        System.out.println("country: " + currentItem.getCountryCode());
-      }
-      if (currentItem.getType().equals("RACE")) {
-        System.out.format("%-20s %s\n", "venue:", currentItem.getVenue());
-        System.out.format("%-20s %s\n", "start time:", currentItem.getStartTime());
-      }
-
-      if (currentItem.getType().equals("MARKET")) {
-        System.out.format("%-20s %s\n", "start time:", currentItem.getMarketStartTime());
-        System.out.format("%-20s %s\n", "number of winners:", currentItem.getNumberOfWinners());
-        System.out.format("%-20s %s\n", "exchange id:", currentItem.getExchangeId());
+    System.out.println(currentItem);
+    if(currentItem.getChildren() != null){
+      int i = 0;
+      for(Item item : currentItem.getChildren()) {
+        System.out.println("["+ ++i +"] "+item);
       }
     }
-    System.out.println("-------------------------------------");
-    int i = 0;
-
-    if (!currentItem.getType().equals("MARKET")) {
-      for (NavigationItem item : currentItem.getChildren())
-        System.out.format("[%d] %s\n", ++i, item.getName());
-    } else {
-      ArrayList<String> marketIds = new ArrayList<String>();
-      marketIds.add(currentItem.getId());
-
-
-      Set<PriceData> priceData = new HashSet<PriceData>();
-      priceData.add(PriceData.EX_BEST_OFFERS);
-      PriceProjection priceProjection =
-          new PriceProjection.Builder().withPriceData(priceData).build();
-
-      /* Request a marketbook with the given price projection */
-      List<MarketBook> marketBooks = null;
+    if(currentItem instanceof MarketItem) {
+      List<String> marketIds = Arrays.asList(currentItem.getId());
+      Set<PriceData> priceDataSet = new HashSet<PriceData>();
+      priceDataSet.add(PriceData.EX_BEST_OFFERS);
+      PriceProjection p = new PriceProjection.Builder().withPriceData(priceDataSet).build();
       try {
-        marketBooks =
-            opf.listMarketBook(marketIds).withPriceProjection(priceProjection).build().execute();
+        List<MarketBook> m = opf.listMarketBook(marketIds).withPriceProjection(p).build().execute();
+        printMarketBook(m.get(0));
       } catch (APINGException e) {
+        // TODO Auto-generated catch block
         e.printStackTrace();
-        System.exit(0);
       }
-
-      for (MarketBook book : marketBooks) {
-        printMarketBook(book);
-      }
-    }
-
-    if (!currentItem.getName().equals("ROOT")) {
-      System.out.println("[0] Back");
-    } else {
-      System.out.println("[0] Exit");
     }
   }
 

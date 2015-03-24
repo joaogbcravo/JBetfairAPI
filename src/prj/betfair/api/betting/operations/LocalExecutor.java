@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import prj.betfair.api.betting.datatypes.CancelExecutionReport;
@@ -23,10 +24,14 @@ import prj.betfair.api.betting.datatypes.TimeRangeResult;
 import prj.betfair.api.betting.datatypes.UpdateExecutionReport;
 import prj.betfair.api.betting.datatypes.VenueResult;
 import prj.betfair.api.betting.exceptions.APINGException;
-import prj.betfair.api.betting.navigation.NavigationItem;
+import prj.betfair.api.betting.navigation.Item;
 import prj.betfair.api.login.ApplicationToken;
 
 public class LocalExecutor implements Executor {
+
+  private String navigationDataPath;
+  private String listMarketCatalogueDataPath;
+  private String listMarketBookDataPath;
 
   @Override
   public CancelExecutionReport execute(CancelOrdersOperation operation) throws APINGException {
@@ -77,14 +82,31 @@ public class LocalExecutor implements Executor {
 
   @Override
   public ArrayList<MarketBook> execute(ListMarketBookOperation operation) throws APINGException {
-    // TODO Auto-generated method stub
+    try {
+      ObjectMapper mapper = new ObjectMapper();
+      return mapper.readValue(new File(listMarketBookDataPath),
+          new TypeReference<ArrayList<MarketBook>>() {});
+    } catch (IOException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+      System.exit(0);
+    }
     return null;
   }
 
   @Override
   public ArrayList<MarketCatalogue> execute(ListMarketCatalogueOperation operation)
       throws APINGException {
-    // TODO Auto-generated method stub
+
+    try {
+      ObjectMapper mapper = new ObjectMapper();
+      return mapper.readValue(new File(listMarketCatalogueDataPath),
+          new TypeReference<ArrayList<MarketCatalogue>>() {});
+    } catch (IOException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+      System.exit(0);
+    }
     return null;
   }
 
@@ -134,10 +156,10 @@ public class LocalExecutor implements Executor {
   }
 
   @Override
-  public NavigationItem getNavigationData() {
+  public Item getNavigationData() {
     ObjectMapper mapper = new ObjectMapper();
     try {
-      return mapper.readValue(new File("./menu.txt"), NavigationItem.class);
+      return mapper.readValue(new File(navigationDataPath), Item.class);
     } catch (IOException e) {
       // TODO Auto-generated catch block
       e.printStackTrace();
@@ -156,6 +178,18 @@ public class LocalExecutor implements Executor {
   public void setApplicationToken(ApplicationToken applicationToken) {
     // TODO Auto-generated method stub
 
+  }
+
+  public void setNavigationData(String navigationDataPath) {
+    this.navigationDataPath = navigationDataPath;
+  }
+
+  public void setListMarketCatalogueDataPath(String path) {
+    this.listMarketCatalogueDataPath = path;
+  }
+
+  public void setListMarketBookPath(String path) {
+    this.listMarketBookDataPath = path;
   }
 
 }

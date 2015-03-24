@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import prj.betfair.api.betting.exceptions.APINGException;
 
@@ -17,6 +18,7 @@ import prj.betfair.api.betting.exceptions.APINGException;
  * use listMarketCatalogue to retrieve the name of the market, the names of selections and other
  * information about markets.
  */
+@JsonSerialize(include=JsonSerialize.Inclusion.NON_NULL)
 public class ListMarketCatalogueOperation {
   private final MarketSort sort;
   private final Set<MarketProjection> marketProjection;

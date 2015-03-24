@@ -19,7 +19,7 @@ import prj.betfair.api.betting.datatypes.TimeRangeResult;
 import prj.betfair.api.betting.datatypes.UpdateExecutionReport;
 import prj.betfair.api.betting.datatypes.VenueResult;
 import prj.betfair.api.betting.exceptions.APINGException;
-import prj.betfair.api.betting.navigation.NavigationItem;
+import prj.betfair.api.betting.navigation.Item;
 import prj.betfair.api.login.ApplicationToken;
 
 
@@ -74,7 +74,7 @@ public interface Executor {
   public abstract UpdateExecutionReport execute(UpdateOrdersOperation operation)
       throws APINGException;
 
-  public abstract NavigationItem getNavigationData() throws APINGException;
+  public abstract Item getNavigationData() throws APINGException;
 
   public abstract ApplicationToken getApplicationToken();
 

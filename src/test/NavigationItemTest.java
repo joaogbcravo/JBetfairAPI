@@ -7,7 +7,7 @@ import java.io.IOException;
 
 import org.junit.Test;
 
-import prj.betfair.api.betting.navigation.NavigationItem;
+import prj.betfair.api.betting.navigation.Item;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -17,8 +17,9 @@ public class NavigationItemTest {
   @Test
   public void test() throws JsonParseException, JsonMappingException, IOException {
     ObjectMapper mapper = new ObjectMapper();
-    NavigationItem item =
-        mapper.readValue(new File("./src/test/resources/navigationData.txt"), NavigationItem.class);
+
+    Item item =
+        mapper.readValue(new File("./src/test/resources/navigationData.txt"), Item.class);
     assertEquals(item.getName(), "ROOT");
     assertEquals(item.getChildren().size(), 2);
     assertEquals(item.getChildren().get(0).getName(), "Soccer");
