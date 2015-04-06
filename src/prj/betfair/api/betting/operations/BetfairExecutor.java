@@ -30,7 +30,6 @@ import prj.betfair.api.betting.datatypes.UpdateExecutionReport;
 import prj.betfair.api.betting.datatypes.VenueResult;
 import prj.betfair.api.betting.exceptions.APINGException;
 import prj.betfair.api.betting.exceptions.ExceptionWrapper;
-import prj.betfair.api.betting.navigation.Item;
 import prj.betfair.api.login.ApplicationToken;
 
 public class BetfairExecutor implements Executor {
@@ -183,8 +182,8 @@ public class BetfairExecutor implements Executor {
   }
 
   @Override
-  public Item getNavigationData() throws APINGException {
-    return this.get(MENU).readEntity(Item.class);
+  public <T> T getNavigationData(Class<T> type) throws APINGException {
+    return this.get(MENU).readEntity(type);
   }
 
   private Response get(String path) throws APINGException {

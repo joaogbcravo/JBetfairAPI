@@ -24,14 +24,13 @@ import prj.betfair.api.betting.datatypes.TimeRangeResult;
 import prj.betfair.api.betting.datatypes.UpdateExecutionReport;
 import prj.betfair.api.betting.datatypes.VenueResult;
 import prj.betfair.api.betting.exceptions.APINGException;
-import prj.betfair.api.betting.navigation.Item;
 import prj.betfair.api.login.ApplicationToken;
 
 public class LocalExecutor implements Executor {
 
-  private String navigationDataPath;
-  private String listMarketCatalogueDataPath;
-  private String listMarketBookDataPath;
+  protected String navigationDataPath;
+  protected String listMarketCatalogueDataPath;
+  protected String listMarketBookDataPath;
 
   @Override
   public CancelExecutionReport execute(CancelOrdersOperation operation) throws APINGException {
@@ -156,10 +155,10 @@ public class LocalExecutor implements Executor {
   }
 
   @Override
-  public Item getNavigationData() {
+  public <T> T getNavigationData(Class<T> type) {
     ObjectMapper mapper = new ObjectMapper();
     try {
-      return mapper.readValue(new File(navigationDataPath), Item.class);
+      return mapper.readValue(new File(navigationDataPath), type);
     } catch (IOException e) {
       // TODO Auto-generated catch block
       e.printStackTrace();

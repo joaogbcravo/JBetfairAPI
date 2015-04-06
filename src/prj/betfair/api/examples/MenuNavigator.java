@@ -16,18 +16,14 @@ import prj.betfair.api.betting.navigation.MarketItem;
 import prj.betfair.api.betting.operations.OperationBuilder;
 
 public class MenuNavigator {
-  private Item root;
   private Item currentItem;
-  private OperationBuilder opf;
-
+  private final Item root;
+  private final OperationBuilder opf;
+  
   public MenuNavigator(Item rootItem, OperationBuilder operationFactory) {
     this.root = rootItem;
     this.currentItem = root;
     this.opf = operationFactory;
-  }
-
-  public void setRootItem(Item rootItem) {
-    this.root = rootItem;
   }
   
   public void goToParent() {
@@ -67,7 +63,6 @@ public class MenuNavigator {
         List<MarketBook> m = opf.listMarketBook(marketIds).withPriceProjection(p).build().execute();
         printMarketBook(m.get(0));
       } catch (APINGException e) {
-        // TODO Auto-generated catch block
         e.printStackTrace();
       }
     }
