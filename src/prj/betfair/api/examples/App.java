@@ -2,7 +2,6 @@ package prj.betfair.api.examples;
 
 import java.io.BufferedReader;
 import java.io.Console;
-import java.io.IOException;
 import java.io.InputStreamReader;
 
 import prj.betfair.api.betting.exceptions.APINGException;
@@ -50,33 +49,27 @@ public class App {
 
     // Create an OperationBuilder, this is a convenience class to create operation objects
     OperationBuilder opf = new OperationBuilder(exec);
-    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    Cli cli = new Cli(new BufferedReader(new InputStreamReader(System.in)));
     MenuNavigator nav = null;
 
     // Retrieve navigationData from betfair using the executor and build a MenuNavigator with it.
     try {
-      nav = new MenuNavigator(exec.getNavigationData(Item.class), opf);
+      nav = new MenuNavigator(exec.getNavigationData(Item.class), opf, cli);
     } catch (APINGException e) {
       e.printStackTrace();
       System.exit(-1);
     }
-
-    // The navigationData download succeeded, print the root item and start navigation
+    
     nav.printCurrentItem();
+    Integer sel;
     while (true) {
-      System.out.println("Selection: ");
-      try {
-        int sel = Integer.parseInt(br.readLine());
-        if (sel == 0) {
-          nav.goToParent();
-        } else {
-          nav.goToChild(sel);
-        }
-      } catch (IOException e) {
-        System.out.println("IO Exception");
-        System.exit(-1);
-      } catch (NumberFormatException e) {
-        System.out.println("Incorrect number format");
+      sel = cli.readInteger();
+      if (sel == null)
+        continue;
+      if (sel == 0) {
+        nav.goToParent();
+      } else {
+        nav.handleSelection(sel);
       }
     }
   }
