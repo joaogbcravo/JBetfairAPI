@@ -34,8 +34,10 @@ public class ExchangeNavigator {
   private final Item root;
   private final OperationFactory opf;
   private final Cli cli;
-  private final String marketOptions[] = {"place back bet",
-      "place lay bet", "list bets","cancel bet"};
+  private final String marketOptions[] = {"place back bet", "place lay bet", "list bets",
+      "cancel bet"};
+  private final int PLACE_BACK_BET_OPTION = 1, PLACE_LAY_BET_OPTION = 2, LIST_BET_OPTION = 3,
+      CANCEL_BETS_OPTION = 4;
 
   public ExchangeNavigator(Item rootItem, OperationFactory operationFactory, Cli cli) {
     this.root = rootItem;
@@ -64,16 +66,16 @@ public class ExchangeNavigator {
           case 0:
             currentItem = currentItem.getParent();
             break;
-          case 1:
+          case PLACE_BACK_BET_OPTION:
             placeBetOption(Side.BACK);
             break;
-          case 2:
+          case PLACE_LAY_BET_OPTION:
             placeBetOption(Side.LAY);
             break;
-          case 3:
+          case LIST_BET_OPTION:
             printCurrentOrders();
             break;
-          case 4:
+          case CANCEL_BETS_OPTION:
             cancelBetOption();
             break;
           default:

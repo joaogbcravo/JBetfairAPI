@@ -18,6 +18,8 @@ public class AccountsNavigator {
   private Executor executor;
   private Cli cli;
   private final String[] options = {"Details", "Funds", "Statement", "Currency rates"};
+  private final int DETAILS_OPTION = 1, FUNDS_OPTION = 2, STATEMENT_OPTION = 3,
+      CURRENCY_OPTION = 4;
 
   public AccountsNavigator(Executor executor, Cli cli) {
     this.executor = executor;
@@ -32,16 +34,16 @@ public class AccountsNavigator {
       switch (selection) {
         case 0:
           return;
-        case 1:
+        case DETAILS_OPTION:
           getAccountDetails();
           break;
-        case 2:
+        case FUNDS_OPTION:
           getAccountFunds();
           break;
-        case 3:
+        case STATEMENT_OPTION:
           getAccountStatement();
           break;
-        case 4:
+        case CURRENCY_OPTION:
           listCurrencyRates();
           break;
         default:
