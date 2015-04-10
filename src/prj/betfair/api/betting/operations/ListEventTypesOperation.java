@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import prj.betfair.api.betting.datatypes.EventTypeResult;
 import prj.betfair.api.betting.datatypes.MarketFilter;
 import prj.betfair.api.betting.exceptions.APINGException;
+import prj.betfair.api.common.Executor;
 
 /***
  * Returns a list of Event Types (i.e. Sports) associated with the markets selected by the

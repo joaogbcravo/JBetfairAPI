@@ -8,6 +8,7 @@ import prj.betfair.api.betting.datatypes.MarketFilter;
 import prj.betfair.api.betting.datatypes.SimpleTypes.TimeGranularity;
 import prj.betfair.api.betting.datatypes.TimeRangeResult;
 import prj.betfair.api.betting.exceptions.APINGException;
+import prj.betfair.api.common.Executor;
 
 /***
  * Returns a list of time ranges in the granularity specified in the request (i.e. 3PM to 4PM, Aug

@@ -1,7 +1,5 @@
 package prj.betfair.api.examples;
 
-import java.io.BufferedReader;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -29,115 +27,82 @@ import prj.betfair.api.betting.datatypes.SimpleTypes.Side;
 import prj.betfair.api.betting.exceptions.APINGException;
 import prj.betfair.api.betting.navigation.Item;
 import prj.betfair.api.betting.navigation.MarketItem;
-import prj.betfair.api.betting.operations.OperationBuilder;
+import prj.betfair.api.betting.operations.OperationFactory;
 
-public class MenuNavigator {
+public class ExchangeNavigator {
   private Item currentItem;
   private final Item root;
-  private final OperationBuilder opf;
+  private final OperationFactory opf;
   private final Cli cli;
+  private final String marketOptions[] = {"place back bet",
+      "place lay bet", "list bets","cancel bet"};
 
-  private enum MarketOption {
-    PLACE_BACK_BET("place back bet", 1), PLACE_LAY_BET("place lay bet", 2), LIST_BETS("list bets",
-        3), CANCEL_BET("cancel bet", 4);
-    private final String text;
-    private final int index;
-
-    MarketOption(String text, int index) {
-      this.text = text;
-      this.index = index;
-    }
-
-    public String toString() {
-      return text;
-    }
-
-    public int index() {
-      return index;
-    }
-  }
-
-  public MenuNavigator(Item rootItem, OperationBuilder operationFactory, Cli cli) {
+  public ExchangeNavigator(Item rootItem, OperationFactory operationFactory, Cli cli) {
     this.root = rootItem;
     this.currentItem = root;
     this.opf = operationFactory;
     this.cli = cli;
   }
 
-  public void goToParent() {
-    if (!currentItem.equals(root)) {
-      currentItem = currentItem.getParent();
-    } else {
-      cli.println("Goodbye!");
-      System.exit(0);
-    }
-    printCurrentItem();
+  public boolean isRoot() {
+    return (currentItem.getParent() == null);
   }
 
-  public void parseSelection(BufferedReader reader) {
-    System.out.println("Selection: ");
+  public void navigate() {
+    Integer selection = null;
+    while (true) {
+      if (currentItem instanceof MarketItem) {
+        printMarketItem((MarketItem) currentItem);
+        cli.printOptions(marketOptions);
+      } else {
+        cli.printOptions(currentItem.getChildren());
+      }
+      selection = cli.readInteger();
+      /* Market item, act on option */
+      if (currentItem instanceof MarketItem) {
+        switch (selection) {
+          case 0:
+            currentItem = currentItem.getParent();
+            break;
+          case 1:
+            placeBetOption(Side.BACK);
+            break;
+          case 2:
+            placeBetOption(Side.LAY);
+            break;
+          case 3:
+            printCurrentOrders();
+            break;
+          case 4:
+            cancelBetOption();
+            break;
+          default:
+            System.out.println("selection out of range");
+        }
+      }
+
+      /* Menu option, move around the menu... */
+      else if (selection < currentItem.getChildren().size() && selection > 0) {
+        currentItem = currentItem.getChildren().get(selection - 1);
+      } else if (selection == 0) {
+        /* reached the top item, no reason to stay here... */
+        if (currentItem.getParent() == null)
+          return;
+        currentItem = currentItem.getParent();
+      }
+    }
+  }
+
+  private void printMarketItem(MarketItem marketItem) {
+    List<String> marketIds = Arrays.asList(currentItem.getId());
+    Set<PriceData> priceDataSet = new HashSet<PriceData>();
+    priceDataSet.add(PriceData.EX_BEST_OFFERS);
+    PriceProjection p = new PriceProjection.Builder().withPriceData(priceDataSet).build();
     try {
-      String line = reader.readLine();
-      int sel = Integer.parseInt(line);
-      if (sel == 0) {
-        goToParent();
-      } else if (currentItem instanceof MarketItem) {
-      } else {
-        handleSelection(sel);
-      }
-    } catch (IOException e) {
-      System.out.println("IO Exception");
-      System.exit(-1);
-    } catch (NumberFormatException e) {
-      System.out.println("Incorrect number format");
-    }
-  }
-
-  public void handleSelection(int selection) {
-    if (currentItem instanceof MarketItem) {
-      if (selection == MarketOption.PLACE_BACK_BET.index()) {
-        placeBetOption(Side.BACK);
-      } else if (selection == MarketOption.PLACE_LAY_BET.index()) {
-        placeBetOption(Side.LAY);
-      } else if (selection == MarketOption.LIST_BETS.index()) {
-        listOrders();
-      } else if (selection == MarketOption.CANCEL_BET.index()) {
-        cancelBetOption();
-      } else {
-        System.out.println("Selection out of range!");
-      }
-    } else if (selection <= currentItem.getChildren().size() && selection > 0) {
-      currentItem = currentItem.getChildren().get(selection - 1);
-    } else {
-      System.out.println("Selection out of range!");
-    }
-    printCurrentItem();
-
-    if (currentItem instanceof MarketItem)
-      printMarketOptions();
-  }
-
-  public void printCurrentItem() {
-    System.out.println(currentItem);
-    if (currentItem.getChildren() != null) {
-      int i = 0;
-      for (Item item : currentItem.getChildren()) {
-        System.out.println("[" + ++i + "] " + item);
-      }
-    }
-    if (currentItem instanceof MarketItem) {
-      List<String> marketIds = Arrays.asList(currentItem.getId());
-      Set<PriceData> priceDataSet = new HashSet<PriceData>();
-      priceDataSet.add(PriceData.EX_BEST_OFFERS);
-      PriceProjection p = new PriceProjection.Builder().withPriceData(priceDataSet).build();
-      try {
-        List<MarketBook> m = opf.listMarketBook(marketIds).withPriceProjection(p).build().execute();
-        printMarketBook(m.get(0));
-      } catch (APINGException e) {
-        e.printStackTrace();
-      }
-
-
+      List<MarketBook> m = opf.listMarketBook(marketIds).withPriceProjection(p).build().execute();
+      printMarketBook(m.get(0));
+    } catch (APINGException e) {
+      e.printStackTrace();
     }
   }
 
@@ -214,12 +179,6 @@ public class MenuNavigator {
     return null;
   }
 
-  private void printMarketOptions() {
-    for (MarketOption option : MarketOption.values()) {
-      System.out.println("[" + option.index() + "] " + option);
-    }
-  }
-
   private void placeBetOption(Side side) {
     Double amount = null;
     Double odds = null;
@@ -281,7 +240,7 @@ public class MenuNavigator {
     }
   }
 
-  private void listOrders() {
+  private void printCurrentOrders() {
     try {
       CurrentOrderSummaryReport report = opf.listCurrentOrder().build().execute();
       List<CurrentOrderSummary> orderSummaries = report.getCurrentOrders();

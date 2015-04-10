@@ -1,7 +1,21 @@
-package prj.betfair.api.betting.operations;
+package prj.betfair.api.common;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import prj.betfair.api.accounts.datatypes.AccountDetailsResponse;
+import prj.betfair.api.accounts.datatypes.AccountFundsResponse;
+import prj.betfair.api.accounts.datatypes.AccountStatementReport;
+import prj.betfair.api.accounts.datatypes.CurrencyRate;
+import prj.betfair.api.accounts.datatypes.DeveloperApp;
+import prj.betfair.api.accounts.datatypes.TransferResponse;
+import prj.betfair.api.accounts.operations.CreateDeveloperAppKeysOperation;
+import prj.betfair.api.accounts.operations.GetAccountDetailsOperation;
+import prj.betfair.api.accounts.operations.GetAccountFundsOperation;
+import prj.betfair.api.accounts.operations.GetAccountStatementOperation;
+import prj.betfair.api.accounts.operations.GetDeveloperAppKeysOperation;
+import prj.betfair.api.accounts.operations.ListCurrencyRatesOperation;
+import prj.betfair.api.accounts.operations.TransferFundsOperation;
 import prj.betfair.api.betting.datatypes.CancelExecutionReport;
 import prj.betfair.api.betting.datatypes.ClearedOrderSummaryReport;
 import prj.betfair.api.betting.datatypes.CompetitionResult;
@@ -19,7 +33,23 @@ import prj.betfair.api.betting.datatypes.TimeRangeResult;
 import prj.betfair.api.betting.datatypes.UpdateExecutionReport;
 import prj.betfair.api.betting.datatypes.VenueResult;
 import prj.betfair.api.betting.exceptions.APINGException;
-import prj.betfair.api.login.ApplicationToken;
+import prj.betfair.api.betting.operations.CancelOrdersOperation;
+import prj.betfair.api.betting.operations.ListClearedOrdersOperation;
+import prj.betfair.api.betting.operations.ListCompetitionsOperation;
+import prj.betfair.api.betting.operations.ListCountriesOperation;
+import prj.betfair.api.betting.operations.ListCurrentOrdersOperation;
+import prj.betfair.api.betting.operations.ListEventTypesOperation;
+import prj.betfair.api.betting.operations.ListEventsOperation;
+import prj.betfair.api.betting.operations.ListMarketBookOperation;
+import prj.betfair.api.betting.operations.ListMarketCatalogueOperation;
+import prj.betfair.api.betting.operations.ListMarketProfitAndLossOperation;
+import prj.betfair.api.betting.operations.ListMarketTypesOperation;
+import prj.betfair.api.betting.operations.ListTimeRangesOperation;
+import prj.betfair.api.betting.operations.ListVenuesOperation;
+import prj.betfair.api.betting.operations.PlaceOrdersOperation;
+import prj.betfair.api.betting.operations.ReplaceOrdersOperation;
+import prj.betfair.api.betting.operations.UpdateOrdersOperation;
+import prj.betfair.api.session.Session;
 
 
 
@@ -75,8 +105,22 @@ public interface Executor {
 
   public abstract <T> T getNavigationData(Class<T> type) throws APINGException;
 
-  public abstract ApplicationToken getApplicationToken();
+  public abstract Session getApplicationToken();
 
-  public abstract void setApplicationToken(ApplicationToken applicationToken);
+  public abstract void setApplicationToken(Session applicationToken);
+
+  public abstract TransferResponse execute(TransferFundsOperation operation) throws APINGException;
+
+  public abstract ArrayList<CurrencyRate> execute(ListCurrencyRatesOperation operation) throws APINGException;
+
+  public abstract ArrayList<DeveloperApp> execute(GetDeveloperAppKeysOperation operation) throws APINGException;
+
+  public abstract AccountStatementReport execute(GetAccountStatementOperation operation) throws APINGException;
+
+  public abstract AccountFundsResponse execute(GetAccountFundsOperation operation) throws APINGException;
+
+  public abstract AccountDetailsResponse execute(GetAccountDetailsOperation operation) throws APINGException;
+
+  public abstract DeveloperApp execute(CreateDeveloperAppKeysOperation operation) throws APINGException;
 
 }

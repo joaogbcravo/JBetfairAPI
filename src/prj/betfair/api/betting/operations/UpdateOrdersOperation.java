@@ -8,6 +8,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import prj.betfair.api.betting.exceptions.APINGException;
+import prj.betfair.api.common.Executor;
 
 /***
  * Update non-exposure changing fields

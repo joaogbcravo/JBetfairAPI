@@ -8,6 +8,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import prj.betfair.api.betting.exceptions.APINGException;
+import prj.betfair.api.common.Executor;
 
 /***
  * This operation is logically a bulk cancel followed by a bulk place. The cancel is completed first

@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import prj.betfair.api.betting.datatypes.MarketProfitAndLoss;
 import prj.betfair.api.betting.exceptions.APINGException;
+import prj.betfair.api.common.Executor;
 
 /***
  * Retrieve profit and loss for a given list of markets. The values are calculated using matched

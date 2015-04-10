@@ -1,4 +1,4 @@
-package prj.betfair.api.login;
+package prj.betfair.api.session;
 
 public class SimpleTypes {
   public enum LoginStatusCode {

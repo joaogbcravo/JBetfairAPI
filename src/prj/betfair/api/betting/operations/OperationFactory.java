@@ -9,6 +9,7 @@ import prj.betfair.api.betting.datatypes.ReplaceInstruction;
 import prj.betfair.api.betting.datatypes.SimpleTypes.BetStatus;
 import prj.betfair.api.betting.datatypes.SimpleTypes.TimeGranularity;
 import prj.betfair.api.betting.datatypes.UpdateInstruction;
+import prj.betfair.api.common.Executor;
 
 
 /**
@@ -16,10 +17,10 @@ import prj.betfair.api.betting.datatypes.UpdateInstruction;
  * within this API. Each method will return a Builder for the corresponding operation with the
  * preset operation executor provided at creation of the OperationBuilderFactory.
  */
-public class OperationBuilder {
+public class OperationFactory {
   private final Executor executor;
 
-  public OperationBuilder(Executor executor) {
+  public OperationFactory(Executor executor) {
     this.executor = executor;
   }
 

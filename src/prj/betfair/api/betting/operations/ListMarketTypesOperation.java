@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import prj.betfair.api.betting.datatypes.MarketFilter;
 import prj.betfair.api.betting.datatypes.MarketTypeResult;
 import prj.betfair.api.betting.exceptions.APINGException;
+import prj.betfair.api.common.Executor;
 
 /***
  * Returns a list of market types (i.e. MATCH_ODDS, NEXT_GOAL) associated with the markets selected

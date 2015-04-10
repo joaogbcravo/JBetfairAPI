@@ -6,7 +6,6 @@ import prj.betfair.api.betting.datatypes.APINGExceptionResult;
 
 public class ExceptionDetail {
   private String exceptionname;
-  @JsonProperty("APINGException")
   private APINGExceptionResult apiNgException;
 
   public ExceptionDetail() {}
@@ -23,9 +22,13 @@ public class ExceptionDetail {
     return apiNgException;
   }
 
+  @JsonProperty("APINGException")
   public void setAPINGException(APINGExceptionResult APINGException) {
     this.apiNgException = APINGException;
   }
-
-
+  
+  @JsonProperty("AccountAPINGException")
+  public void setAccountAPINGException(APINGExceptionResult APINGException) {
+    this.apiNgException = APINGException;
+  }
 }

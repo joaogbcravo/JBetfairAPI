@@ -2,9 +2,11 @@ package prj.betfair.api.betting.operations;
 
 import prj.betfair.api.betting.datatypes.CancelInstruction;
 import prj.betfair.api.betting.datatypes.CancelExecutionReport;
+
 import java.util.List;
 
 import prj.betfair.api.betting.exceptions.APINGException;
+import prj.betfair.api.common.Executor;
 
 /***
  * Cancel all bets OR cancel all bets on a market OR fully or partially cancel particular orders on

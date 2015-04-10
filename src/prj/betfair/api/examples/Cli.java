@@ -2,15 +2,35 @@ package prj.betfair.api.examples;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.List;
 
 public class Cli {
   private final BufferedReader in;
-  public Cli(BufferedReader in) {
-    this.in = in;
+  public Cli() {
+    in = new BufferedReader(new InputStreamReader(System.in));
   }
+  
+  public void printOptions(List<?> options) {
+    printOptions(options.toArray());
+  }
+  
+  public void printOptions(Object[] options) {
+    int i = 0;
+    System.out.println("----------------");
+    for(Object option : options) {
+      System.out.println("["+ ++i +"] " + option);
+    }
+    System.out.println("----------------");
+    System.out.println("[0] BACK");
+    System.out.println("----------------");
+    System.out.println();
+  }
+  
   private String readLine() {
     String ret = null;
     try {
+      System.out.print("$>");
       ret = in.readLine();
     } catch (IOException e) {
       e.printStackTrace();
