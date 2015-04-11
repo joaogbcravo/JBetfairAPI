@@ -4,9 +4,14 @@ JBetfairAPI
 A JAVA Implementation of the Betfair exchange API (NG)
 
 ####How to use
-To be able to use this API implementation you need to have a functioning Betfair account, you can create one at www.betfair.com. Apart from a regular betting account you also need to have an application key to get access to the Betfair REST interface that this API relies on. Information on how to create an application key can be found here: https://api.developer.betfair.com/services/webapps/docs/x/PYAS
+To be able to use this JBetfairAPI you need to have a functioning Betfair account, you can create one at www.betfair.com. Apart from a regular betting account you also need to have an application key to get access to the Betfair REST interface that JBetfairAPI relies on. Information on how to create an application key can be found here: https://api.developer.betfair.com/services/webapps/docs/x/PYAS
 
-The API implementation currently supports the following operations:
+An example application is included, to run:
+```
+mvn clean compile assembly:single
+java -jar target/JBetfairAPI-1.0-SNAPSHOT-jar-with-dependencies.jar <AppKey> <username>
+```
+JBetfairAPI currently supports the following operations:
 - listEventTypes
 - listCompetitions
 - listTimeRanges
@@ -23,19 +28,25 @@ The API implementation currently supports the following operations:
 - cancelOrders
 - replaceOrders
 - updateOrders
+- createDeveloperAppKeys
+- getAccountDetails
+- getAccountFunds
+- getDeveloperAppKeys
+- getAccountStatement
+- listCurrencyRates
+
 
 ####Dependencies
-Add the following to your pom.xml
 ```
 <dependency>
     <groupId>org.glassfish.jersey.core</groupId>
     <artifactId>jersey-client</artifactId>
-    <version>2.13</version>
+    <version>2.17</version>
 </dependency>
 <dependency>
     <groupId>org.glassfish.jersey.media</groupId>
     <artifactId>jersey-media-json-jackson</artifactId>
-    <version>2.13</version>
+    <version>2.17</version>
 </dependency>
 ```
 ####Example code
