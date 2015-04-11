@@ -1,4 +1,4 @@
-package prj.betfair.api.accounts.operations;
+package prj.betfair.api.common;
 
 import java.io.IOException;
 import com.fasterxml.jackson.core.JsonGenerator;
@@ -12,7 +12,7 @@ public class EmptyBeanSerializer extends JsonSerializer<Object>{
   @Override
   public void serialize(Object arg0, JsonGenerator arg1, SerializerProvider arg2)
       throws IOException, JsonProcessingException {
-    arg2.getConfig().without(SerializationFeature.FAIL_ON_EMPTY_BEANS); 
+    arg2.getConfig().without(SerializationFeature.FAIL_ON_EMPTY_BEANS);
     arg1.writeStartObject();
     arg1.writeEndObject();    
   }

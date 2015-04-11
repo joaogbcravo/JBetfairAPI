@@ -34,10 +34,10 @@ public class ExchangeNavigator {
   private final Item root;
   private final OperationFactory opf;
   private final Cli cli;
-  private final String marketOptions[] = {"place back bet", "place lay bet", "list bets",
-      "cancel bet"};
-  private final int PLACE_BACK_BET_OPTION = 1, PLACE_LAY_BET_OPTION = 2, LIST_BET_OPTION = 3,
-      CANCEL_BETS_OPTION = 4;
+  private final String exchangeOptions[] = {"Markets","List placed bets","Cancel bets"};
+  private final String marketOptions[] = {"Place back bet", "Place lay bet"};
+  private final int BACK_OPTION = 0, PLACE_BACK_BET_OPTION = 1, PLACE_LAY_BET_OPTION = 2, 
+      NAVIGATE_MARKETS_OPTION = 1, LIST_BET_OPTION = 2, CANCEL_BETS_OPTION = 3;
 
   public ExchangeNavigator(Item rootItem, OperationFactory operationFactory, Cli cli) {
     this.root = rootItem;
@@ -51,6 +51,29 @@ public class ExchangeNavigator {
   }
 
   public void navigate() {
+    Integer selection = null;
+    while(true) {
+      cli.printOptions(exchangeOptions);
+      selection = cli.readInteger();
+      if(selection == null)
+        continue;
+      switch(selection) {
+        case BACK_OPTION:
+          return;
+        case NAVIGATE_MARKETS_OPTION:
+          navigateMarketsOption();
+          break;
+        case LIST_BET_OPTION:
+          printCurrentOrders();
+          break;
+        case CANCEL_BETS_OPTION:
+          cancelBets();
+          break; 
+      }
+    }
+    
+  }
+  private void navigateMarketsOption() {
     Integer selection = null;
     while (true) {
       if (currentItem instanceof MarketItem) {
@@ -67,16 +90,10 @@ public class ExchangeNavigator {
             currentItem = currentItem.getParent();
             break;
           case PLACE_BACK_BET_OPTION:
-            placeBetOption(Side.BACK);
+            placeBet(Side.BACK);
             break;
           case PLACE_LAY_BET_OPTION:
-            placeBetOption(Side.LAY);
-            break;
-          case LIST_BET_OPTION:
-            printCurrentOrders();
-            break;
-          case CANCEL_BETS_OPTION:
-            cancelBetOption();
+            placeBet(Side.LAY);
             break;
           default:
             System.out.println("selection out of range");
@@ -181,7 +198,7 @@ public class ExchangeNavigator {
     return null;
   }
 
-  private void placeBetOption(Side side) {
+  private void placeBet(Side side) {
     Double amount = null;
     Double odds = null;
     Long selectionId = null;
@@ -231,10 +248,12 @@ public class ExchangeNavigator {
     }
   }
 
-  private void cancelBetOption() {
+  private void cancelBets() {
+    System.out.print("MarketId: ");
+    String marketId = cli.readString();
     try {
       CancelExecutionReport result =
-          opf.cancelOrders().withMarketId(((MarketItem) currentItem).getId()).build().execute();
+          opf.cancelOrders().withMarketId(marketId).build().execute();
       System.out.println(result.getStatus());
     } catch (APINGException e) {
       // TODO Auto-generated catch block
@@ -249,20 +268,21 @@ public class ExchangeNavigator {
       for (CurrentOrderSummary orderSummary : orderSummaries) {
         System.out
             .println("-------------------------------------------------------------------------");
-        System.out.format("Selection id: %20s\n", orderSummary.getSelectionId());
-        System.out.format("Bet id: %20s\n", orderSummary.getBetId());
-        System.out.format("Price/size %20s\n", orderSummary.getPriceSize().getPrice() + "/"
+        System.out.format("%-25s %s\n","Market id:", orderSummary.getMarketId()); 
+        System.out.format("%-25s %s\n","Selection id:", orderSummary.getSelectionId());
+        System.out.format("%-25s %s\n","Bet id:", orderSummary.getBetId());
+        System.out.format("%-25s %s\n","Price/size:", orderSummary.getPriceSize().getPrice() + "/"
             + orderSummary.getPriceSize().getSize());
-        System.out.format("Side: %20s\n", orderSummary.getSide());
-        System.out.format("Average price matched: %20f\n", orderSummary.getAveragePriceMatched());
-        System.out.format("Placed date: %20s\n", orderSummary.getPlacedDate().toString());
-        System.out.format("Matched date: %20s\n", orderSummary.getMatchedDate().toString());
-        System.out.format("Size cancelled: %20f\n", orderSummary.getSizeCancelled());
-        System.out.format("Size lapsed: %20f\n", orderSummary.getSizeLapsed());
-        System.out.format("Size matched: %20f\n", orderSummary.getSizeMatched());
-        System.out.format("Size remaining: %20f\n", orderSummary.getSizeRemaining());
-        System.out.format("Size voided: %20f\n", orderSummary.getSizeVoided());
-        System.out.format("Status %20s\n", orderSummary.getStatus());
+        System.out.format("%-25s: %s\n","Side:", orderSummary.getSide());
+        System.out.format("%-25s %f\n","Average price matched:", orderSummary.getAveragePriceMatched());
+        System.out.format("%-25s %s\n","Placed date:", orderSummary.getPlacedDate().toString());
+        System.out.format("%-25s %s\n","Matched date:", orderSummary.getMatchedDate().toString());
+        System.out.format("%-25s %f\n","Size cancelled:", orderSummary.getSizeCancelled());
+        System.out.format("%-25s %f\n","Size lapsed:", orderSummary.getSizeLapsed());
+        System.out.format("%-25s %f\n","Size matched:", orderSummary.getSizeMatched());
+        System.out.format("%-25s %f\n","Size remaining:", orderSummary.getSizeRemaining());
+        System.out.format("%-25s %f\n","Size voided:", orderSummary.getSizeVoided());
+        System.out.format("%-25s %s\n","Status", orderSummary.getStatus());
       }
     } catch (APINGException e) {
       // TODO Auto-generated catch block
@@ -278,8 +298,8 @@ public class ExchangeNavigator {
       if (prices.getAvailableToLay() != null) {
         if (i < prices.getAvailableToLay().size()) {
           layPricesStr[i] =
-              String.valueOf(prices.getAvailableToLay().get(i).getPrice()) + "@"
-                  + String.valueOf(prices.getAvailableToLay().get(i).getSize());
+              String.valueOf(prices.getAvailableToLay().get(i).getSize()) + "@"
+                  + String.valueOf(prices.getAvailableToLay().get(i).getPrice());
         }
       }
       if (prices.getAvailableToBack() != null) {
@@ -292,6 +312,6 @@ public class ExchangeNavigator {
     }
 
     System.out.format("%15s %15s %15s | %-15s %-15s %-15s\n", backPricesStr[2], backPricesStr[1],
-        backPricesStr[0], layPricesStr[2], layPricesStr[1], layPricesStr[0]);
+        backPricesStr[0], layPricesStr[0], layPricesStr[1], layPricesStr[2]);
   }
 }

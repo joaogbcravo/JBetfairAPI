@@ -17,20 +17,20 @@ public class Cli {
   
   public void printOptions(Object[] options) {
     int i = 0;
-    System.out.println("----------------");
+    System.out.println("--------------------------------------------------------");
     for(Object option : options) {
       System.out.println("["+ ++i +"] " + option);
     }
-    System.out.println("----------------");
+    System.out.println("--------------------------------------------------------");
     System.out.println("[0] BACK");
-    System.out.println("----------------");
+    System.out.println("--------------------------------------------------------");
     System.out.println();
   }
   
   private String readLine() {
     String ret = null;
     try {
-      System.out.print("$>");
+      System.out.print(">");
       ret = in.readLine();
     } catch (IOException e) {
       e.printStackTrace();

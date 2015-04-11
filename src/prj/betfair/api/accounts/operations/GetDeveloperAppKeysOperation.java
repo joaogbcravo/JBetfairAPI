@@ -2,13 +2,17 @@ package prj.betfair.api.accounts.operations;
 
 import java.util.ArrayList;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 import prj.betfair.api.accounts.datatypes.DeveloperApp;
 import prj.betfair.api.betting.exceptions.APINGException;
+import prj.betfair.api.common.EmptyBeanSerializer;
 import prj.betfair.api.common.Executor;
 
 /***
  * Get all application keys owned by the given developer/vendor
  */
+@JsonSerialize(using = EmptyBeanSerializer.class)
 public class GetDeveloperAppKeysOperation {
   private final Executor executor;
 

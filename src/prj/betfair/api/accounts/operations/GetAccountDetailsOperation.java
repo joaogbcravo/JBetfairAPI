@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import prj.betfair.api.accounts.datatypes.AccountDetailsResponse;
 import prj.betfair.api.betting.exceptions.APINGException;
+import prj.betfair.api.common.EmptyBeanSerializer;
 import prj.betfair.api.common.Executor;
 
 /***
