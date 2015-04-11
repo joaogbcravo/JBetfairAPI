@@ -101,7 +101,7 @@ public class ExchangeNavigator {
       }
 
       /* Menu option, move around the menu... */
-      else if (selection < currentItem.getChildren().size() && selection > 0) {
+      else if (selection <= currentItem.getChildren().size() && selection > 0) {
         currentItem = currentItem.getChildren().get(selection - 1);
       } else if (selection == 0) {
         /* reached the top item, no reason to stay here... */
@@ -298,7 +298,7 @@ public class ExchangeNavigator {
       if (prices.getAvailableToLay() != null) {
         if (i < prices.getAvailableToLay().size()) {
           layPricesStr[i] =
-              String.valueOf(prices.getAvailableToLay().get(i).getSize()) + "@"
+              String.valueOf(prices.getAvailableToLay().get(i).getSize()) + " @ "
                   + String.valueOf(prices.getAvailableToLay().get(i).getPrice());
         }
       }
