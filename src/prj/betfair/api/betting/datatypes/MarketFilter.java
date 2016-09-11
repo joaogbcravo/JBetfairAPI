@@ -19,13 +19,13 @@ public class MarketFilter {
   private  String textQuery;
   private  TimeRange marketStartTime;
   private  Set<String> marketCountries;
-  private  boolean bspOnly;
+  private  Boolean bspOnly;
   private  Set<String> eventIds;
   private  Set<String> marketIds;
   private  Set<String> venues;
   private  Set<String> marketTypeCodes;
-  private  boolean turnInPlayEnabled;
-  private  boolean inPlayOnly;
+  private  Boolean turnInPlayEnabled;
+  private  Boolean inPlayOnly;
   private  Set<OrderStatus> withOrders;
   private  Set<String> competitionIds;
 
@@ -108,7 +108,7 @@ public class MarketFilter {
    * @return bspOnly Restrict to bsp markets only, if True or non-bsp markets if False. If not
    *         specified then returns both BSP and non-BSP markets
    */
-  public boolean getBspOnly() {
+  public Boolean getBspOnly() {
     return this.bspOnly;
   }
 
@@ -116,7 +116,7 @@ public class MarketFilter {
    * @return turnInPlayEnabled Restrict to markets that will turn in play if True or will not turn
    *         in play if false. If not specified, returns both.
    */
-  public boolean getTurnInPlayEnabled() {
+  public Boolean getTurnInPlayEnabled() {
     return this.turnInPlayEnabled;
   }
 
@@ -124,7 +124,7 @@ public class MarketFilter {
    * @return inPlayOnly Restrict to markets that will turn in play if True or will not turn in play
    *         if false. If not specified, returns both.
    */
-  public boolean getInPlayOnly() {
+  public Boolean getInPlayOnly() {
     return this.inPlayOnly;
   }
 
@@ -275,7 +275,7 @@ public class MarketFilter {
      *        specified then returns both BSP and non-BSP markets
      * @return Builder
      */
-    public Builder withBspOnly(boolean bspOnly) {
+    public Builder withBspOnly(Boolean bspOnly) {
       this.bspOnly = bspOnly;
       return this;
     }
@@ -287,7 +287,7 @@ public class MarketFilter {
      *        in play if false. If not specified, returns both.
      * @return Builder
      */
-    public Builder withTurnInPlayEnabled(boolean turnInPlayEnabled) {
+    public Builder withTurnInPlayEnabled(Boolean turnInPlayEnabled) {
       this.turnInPlayEnabled = turnInPlayEnabled;
       return this;
     }
@@ -299,7 +299,7 @@ public class MarketFilter {
      *        if false. If not specified, returns both.
      * @return Builder
      */
-    public Builder withInPlayOnly(boolean inPlayOnly) {
+    public Builder withInPlayOnly(Boolean inPlayOnly) {
       this.inPlayOnly = inPlayOnly;
       return this;
     }

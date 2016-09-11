@@ -180,7 +180,7 @@ public class MarketBook {
     private boolean isMarketDataDelayed;
     private int numberOfRunners;
     private boolean complete;
-    private boolean bspReconciled;
+    private Boolean bspReconciled;
     private boolean runnersVoidable;
     private int betDelay;
     private String marketId;
@@ -208,7 +208,7 @@ public class MarketBook {
 
     /**
      * Use this function to set status
-     * 
+     *
      * @param status The status of the market, for example ACTIVE, SUSPENDED, SETTLED, etc.
      * @return Builder
      */
@@ -219,7 +219,7 @@ public class MarketBook {
 
     /**
      * Use this function to set betDelay
-     * 
+     *
      * @param betDelay The number of seconds an order is held until it is submitted into the market.
      *        Orders are usually delayed when the market is in-play
      * @return Builder
@@ -231,7 +231,7 @@ public class MarketBook {
 
     /**
      * Use this function to set bspReconciled
-     * 
+     *
      * @param bspReconciled True if the market starting price has been reconciled
      * @return Builder
      */
@@ -242,7 +242,7 @@ public class MarketBook {
 
     /**
      * Use this function to set complete
-     * 
+     *
      * @param complete
      * @return Builder
      */
@@ -253,7 +253,7 @@ public class MarketBook {
 
     /**
      * Use this function to set inplay
-     * 
+     *
      * @param inplay True if the market is currently in play
      * @return Builder
      */
@@ -264,7 +264,7 @@ public class MarketBook {
 
     /**
      * Use this function to set numberOfWinners
-     * 
+     *
      * @param numberOfWinners The number of selections that could be settled as winners
      * @return Builder
      */
@@ -275,7 +275,7 @@ public class MarketBook {
 
     /**
      * Use this function to set numberOfRunners
-     * 
+     *
      * @param numberOfRunners The number of runners in the market
      * @return Builder
      */
@@ -286,7 +286,7 @@ public class MarketBook {
 
     /**
      * Use this function to set numberOfActiveRunners
-     * 
+     *
      * @param numberOfActiveRunners The number of runners that are currently active. An active
      *        runner is a selection available for betting
      * @return Builder
@@ -298,7 +298,7 @@ public class MarketBook {
 
     /**
      * Use this function to set lastMatchTime
-     * 
+     *
      * @param lastMatchTime The most recent time an order was executed
      * @return Builder
      */
@@ -309,7 +309,7 @@ public class MarketBook {
 
     /**
      * Use this function to set totalMatched
-     * 
+     *
      * @param totalMatched The total amount matched. This value is truncated at 2dp.
      * @return Builder
      */
@@ -320,7 +320,7 @@ public class MarketBook {
 
     /**
      * Use this function to set totalAvailable
-     * 
+     *
      * @param totalAvailable The total amount of orders that remain unmatched. This value is
      *        truncated at 2dp.
      * @return Builder
@@ -332,7 +332,7 @@ public class MarketBook {
 
     /**
      * Use this function to set crossMatching
-     * 
+     *
      * @param crossMatching True if cross matching is enabled for this market.
      * @return Builder
      */
@@ -343,7 +343,7 @@ public class MarketBook {
 
     /**
      * Use this function to set runnersVoidable
-     * 
+     *
      * @param runnersVoidable True if runners in the market can be voided
      * @return Builder
      */
@@ -354,7 +354,7 @@ public class MarketBook {
 
     /**
      * Use this function to set version
-     * 
+     *
      * @param version The version of the market. The version increments whenever the market status
      *        changes, for example, turning in-play, or suspended when a goal score.
      * @return Builder
@@ -366,7 +366,7 @@ public class MarketBook {
 
     /**
      * Use this function to set runners
-     * 
+     *
      * @param runners Information about the runners (selections) in the market.
      * @return Builder
      */
