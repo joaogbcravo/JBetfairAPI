@@ -1,14 +1,12 @@
 package prj.betfair.api.betting.operations;
 
-import prj.betfair.api.betting.datatypes.PlaceInstruction;
-import prj.betfair.api.betting.datatypes.PlaceExecutionReport;
-
-import java.util.List;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
-
+import prj.betfair.api.betting.datatypes.PlaceExecutionReport;
+import prj.betfair.api.betting.datatypes.PlaceInstruction;
 import prj.betfair.api.betting.exceptions.APINGException;
 import prj.betfair.api.common.Executor;
+
+import java.util.List;
 
 /***
  * Place new orders into market. LIMIT orders below the minimum bet size are allowed if there is an
@@ -19,13 +17,17 @@ public class PlaceOrdersOperation {
   private final List<PlaceInstruction> instructions;
   private final Executor executor;
   private final String customerRef;
+  private final String customerStrategyRef;
   private final String marketId;
+  private final Boolean async;
 
   public PlaceOrdersOperation(Builder builder) {
     this.instructions = builder.instructions;
     this.executor = builder.executor;
     this.customerRef = builder.customerRef;
+    this.customerStrategyRef = builder.customerStrategyRef;
     this.marketId = builder.marketId;
+    this.async = builder.async;
   }
 
   /**
@@ -50,6 +52,23 @@ public class PlaceOrdersOperation {
     return this.customerRef;
   }
 
+  /**
+   * @return customerStrategyRef An optional reference customers can use to specify which strategy has sent the order.
+   * The reference will be returned on order change messages through the stream API.
+   */
+  public String getCustomerStrategyRef() {
+    return customerStrategyRef;
+  }
+
+  /**
+   * @return async An optional flag (not setting equates to false) which specifies if the orders should be placed
+   * asynchronously. Orders can be tracked via the Exchange Stream API or or the API-NG by providing a
+   * customerOrderRef for each place order. An order's status will be PENDING and no bet ID will be returned.
+   */
+  public Boolean getAsync() {
+    return async;
+  }
+
   public PlaceExecutionReport execute() throws APINGException {
     return executor.execute(this);
   }
@@ -57,7 +76,9 @@ public class PlaceOrdersOperation {
   public static class Builder {
     private List<PlaceInstruction> instructions;
     private String customerRef;
+    private String customerStrategyRef;
     private String marketId;
+    private Boolean async;
     private Executor executor;
 
     /**
@@ -79,6 +100,31 @@ public class PlaceOrdersOperation {
      */
     public Builder withCustomerRef(String customerRef) {
       this.customerRef = customerRef;
+      return this;
+    }
+
+    /**
+     * Use this function to set customerStrategyRef
+     *
+     * @param customerStrategyRef An optional reference customers can use to specify which strategy has sent the order.
+     * The reference will be returned on order change messages through the stream API.
+     * @return Builder
+     */
+    public Builder withCustomerStrategyRef(String customerStrategyRef) {
+      this.customerStrategyRef = customerStrategyRef;
+      return this;
+    }
+
+    /**
+     * Use this function to set async
+     *
+     * @param async An optional flag (not setting equates to false) which specifies if the orders should be placed
+     * asynchronously. Orders can be tracked via the Exchange Stream API or or the API-NG by providing a
+     * customerOrderRef for each place order. An order's status will be PENDING and no bet ID will be returned.
+     * @return Builder
+     */
+    public Builder withAsync(Boolean async) {
+      this.async = async;
       return this;
     }
 
