@@ -174,13 +174,13 @@ public class MarketFilter {
     private String textQuery;
     private TimeRange marketStartTime;
     private Set<String> marketCountries;
-    private boolean bspOnly;
+    private Boolean bspOnly;
     private Set<String> eventIds;
     private Set<String> marketIds;
     private Set<String> venues;
     private Set<String> marketTypeCodes;
-    private boolean turnInPlayEnabled;
-    private boolean inPlayOnly;
+    private Boolean turnInPlayEnabled;
+    private Boolean inPlayOnly;
     private Set<OrderStatus> withOrders;
     private Set<String> competitionIds;
 
