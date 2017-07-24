@@ -1,6 +1,8 @@
 package prj.betfair.api.betting.datatypes;
 
 import prj.betfair.api.betting.datatypes.MarketDescription;
+import prj.betfair.api.betting.datatypes.MarketLineRangeInfo;
+import prj.betfair.api.betting.datatypes.PriceLadderDescription;
 import java.util.Date;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -25,6 +27,9 @@ public class MarketDescription {
   private final boolean bspMarket;
   private final String bettingType;
   private final boolean rulesHasDate;
+  private final double eachWayDivisor;
+  private final MarketLineRangeInfo lineRangeInfo;
+  private final PriceLadderDescription priceLadderDescription;
 
   public MarketDescription(Builder builder) {
     this.discountAllowed = builder.discountAllowed;
@@ -42,6 +47,9 @@ public class MarketDescription {
     this.bspMarket = builder.bspMarket;
     this.bettingType = builder.bettingType;
     this.rulesHasDate = builder.rulesHasDate;
+    this.eachWayDivisor = builder.eachWayDivisor;
+    this.lineRangeInfo = builder.lineRangeInfo;
+    this.priceLadderDescription = builder.priceLadderDescription;
   }
 
   /**
@@ -149,6 +157,27 @@ public class MarketDescription {
     return this.clarifications;
   }
 
+  /**
+   * @return eachWayDivisor
+   */
+  public double getEachWayDivisor() {
+    return eachWayDivisor;
+  }
+
+  /**
+   * @return lineRangeInfo
+   */
+  public MarketLineRangeInfo getLineRangeInfo() {
+    return lineRangeInfo;
+  }
+
+  /**
+   * @return priceLadderDescription
+   */
+  public PriceLadderDescription getPriceLadderDescription() {
+    return priceLadderDescription;
+  }
+
   public static class Builder {
     private boolean discountAllowed;
     private Date marketTime;
@@ -165,6 +194,9 @@ public class MarketDescription {
     private boolean bspMarket;
     private String bettingType;
     private boolean rulesHasDate;
+    private double eachWayDivisor;
+    private MarketLineRangeInfo lineRangeInfo;
+    private PriceLadderDescription priceLadderDescription;
 
     /**
      * @param discountAllowed
@@ -201,7 +233,7 @@ public class MarketDescription {
 
     /**
      * Use this function to set settleTime
-     * 
+     *
      * @param settleTime settled time
      * @return Builder
      */
@@ -212,7 +244,7 @@ public class MarketDescription {
 
     /**
      * Use this function to set wallet
-     * 
+     *
      * @param wallet
      * @return Builder
      */
@@ -223,7 +255,7 @@ public class MarketDescription {
 
     /**
      * Use this function to set rules
-     * 
+     *
      * @param rules
      * @return Builder
      */
@@ -234,7 +266,7 @@ public class MarketDescription {
 
     /**
      * Use this function to set rulesHasDate
-     * 
+     *
      * @param rulesHasDate
      * @return Builder
      */
@@ -245,12 +277,45 @@ public class MarketDescription {
 
     /**
      * Use this function to set clarifications
-     * 
+     *
      * @param clarifications
      * @return Builder
      */
     public Builder withClarifications(String clarifications) {
       this.clarifications = clarifications;
+      return this;
+    }
+
+    /**
+     * Use this function to set eachWayDivisor
+     *
+     * @param eachWayDivisor
+     * @return Builder
+     */
+    public Builder withEachWayDivisor(double eachWayDivisor) {
+      this.eachWayDivisor = eachWayDivisor;
+      return this;
+    }
+
+    /**
+     * Use this function to set lineRangeInfo
+     *
+     * @param lineRangeInfo
+     * @return Builder
+     */
+    public Builder withLineRangeInfo(MarketLineRangeInfo lineRangeInfo) {
+      this.lineRangeInfo = lineRangeInfo;
+      return this;
+    }
+
+    /**
+     * Use this function to set priceLadderDescription
+     *
+     * @param priceLadderDescription
+     * @return Builder
+     */
+    public Builder withPriceLadderDescription(PriceLadderDescription priceLadderDescription) {
+      this.priceLadderDescription = priceLadderDescription;
       return this;
     }
 

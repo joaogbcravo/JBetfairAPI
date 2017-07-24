@@ -67,5 +67,7 @@ public class SimpleTypes {
   public enum BetStatus {
     SETTLED, VOIDED, LAPSED, CANCELLED
   }
-
+  public enum PriceLadderType {
+    CLASSIC, FINEST, LINE_RANGE
+  }
 }
