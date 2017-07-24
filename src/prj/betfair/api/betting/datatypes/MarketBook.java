@@ -16,7 +16,7 @@ public class MarketBook {
   private final boolean isMarketDataDelayed;
   private final int numberOfRunners;
   private final boolean complete;
-  private final boolean bspReconciled;
+  private final Boolean bspReconciled;
   private final boolean runnersVoidable;
   private final int betDelay;
   private final String marketId;

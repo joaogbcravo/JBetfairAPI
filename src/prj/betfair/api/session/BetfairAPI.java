@@ -10,6 +10,8 @@ import org.glassfish.jersey.jackson.JacksonFeature;
 public class BetfairAPI {
   private static final String LOGIN_TARGET_ENDPOINT = "https://identitysso.betfair.com/api/login";
   private static final String LOGOUT_TARGET_ENDPOINT = "https://identitysso.betfair.com/api/logout";
+  private static final String KEEP_ALIVE_TARGET_ENDPOINT = "https://identitysso.betfair.com/api/keepAlive";
+
   /**
    * This is the login function that will handle the authentication towards Betfair.
    * @param username The Betfair username
@@ -32,7 +34,28 @@ public class BetfairAPI {
 
     return response;
   }
-  
+
+  /**
+   * This is the keepAlive function that when called garantee that the user session don't drop
+   * @param appKey An application key
+   * @param appToken The Betfair app token
+   * @return An application token to be used when executing operations
+   */
+  public static Session keepAlive(String appKey, String appToken) {
+      ClientConfig cc = new ClientConfig().register(new JacksonFeature());
+      Session response =
+          ClientBuilder.newClient(cc)
+          .target(KEEP_ALIVE_TARGET_ENDPOINT)
+              .request(MediaType.TEXT_PLAIN_TYPE)
+              .header("Accept", " application/json")
+              .header("X-Application", appKey)
+              .header("X-Authentication", appToken)
+              .get()
+              .readEntity(Session.class);
+
+      return response;
+  }
+
   /**
    * Logout
    */
