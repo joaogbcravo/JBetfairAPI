@@ -1,5 +1,6 @@
 package prj.betfair.api.betting.datatypes;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import prj.betfair.api.betting.datatypes.TimeRange;
 import java.util.Date;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -8,6 +9,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
  * TimeRange
  */
 @JsonDeserialize(builder = TimeRange.Builder.class)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class TimeRange {
   private final Date to;
   private final Date from;
@@ -31,6 +33,7 @@ public class TimeRange {
     return this.to;
   }
 
+  @JsonIgnoreProperties(ignoreUnknown = true)
   public static class Builder {
     private Date to;
     private Date from;

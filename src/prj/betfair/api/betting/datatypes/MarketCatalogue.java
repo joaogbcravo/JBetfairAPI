@@ -1,5 +1,6 @@
 package prj.betfair.api.betting.datatypes;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import prj.betfair.api.betting.datatypes.MarketCatalogue;
 import prj.betfair.api.betting.datatypes.RunnerCatalog;
 import prj.betfair.api.betting.datatypes.Event;
@@ -15,6 +16,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
  * Information about a market
  */
 @JsonDeserialize(builder = MarketCatalogue.Builder.class)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class MarketCatalogue {
   private final MarketDescription description;
   private final Date marketStartTime;
@@ -104,6 +106,7 @@ public class MarketCatalogue {
     return this.event;
   }
 
+  @JsonIgnoreProperties(ignoreUnknown = true)
   public static class Builder {
     private MarketDescription description;
     private Date marketStartTime;

@@ -1,5 +1,6 @@
 package prj.betfair.api.betting.datatypes;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import prj.betfair.api.betting.datatypes.LimitOrder;
 import prj.betfair.api.betting.datatypes.SimpleTypes.PersistenceType;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -9,6 +10,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
  * Place a new LIMIT order (simple exchange bet for immediate execution)
  */
 @JsonDeserialize(builder = LimitOrder.Builder.class)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class LimitOrder {
   private final double price;
   private final PersistenceType persistenceType;
@@ -41,6 +43,7 @@ public class LimitOrder {
     return this.persistenceType;
   }
 
+  @JsonIgnoreProperties(ignoreUnknown = true)
   public static class Builder {
     private double price;
     private PersistenceType persistenceType;

@@ -1,5 +1,6 @@
 package prj.betfair.api.betting.datatypes;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import prj.betfair.api.betting.datatypes.ReplaceInstruction;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -9,6 +10,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
  * cancelled and a new order placed at the new price for the remaining stake.
  */
 @JsonDeserialize(builder = ReplaceInstruction.Builder.class)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class ReplaceInstruction {
   private final String betId;
   private final double newPrice;
@@ -32,6 +34,7 @@ public class ReplaceInstruction {
     return this.newPrice;
   }
 
+  @JsonIgnoreProperties(ignoreUnknown = true)
   public static class Builder {
     private String betId;
     private double newPrice;

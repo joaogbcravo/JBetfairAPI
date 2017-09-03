@@ -1,11 +1,13 @@
 package prj.betfair.api.betting.datatypes;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import prj.betfair.api.betting.datatypes.RunnerDescription;
 import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 @JsonDeserialize(builder = RunnerDescription.Builder.class)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class RunnerDescription {
   private final String runnerName;
   private final Map<String, String> metadata;
@@ -29,6 +31,7 @@ public class RunnerDescription {
     return this.metadata;
   }
 
+  @JsonIgnoreProperties(ignoreUnknown = true)
   public static class Builder {
     private String runnerName;
     private Map<String, String> metadata;

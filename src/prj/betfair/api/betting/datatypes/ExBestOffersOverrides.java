@@ -1,5 +1,6 @@
 package prj.betfair.api.betting.datatypes;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import prj.betfair.api.betting.datatypes.ExBestOffersOverrides;
 import prj.betfair.api.betting.datatypes.SimpleTypes.RollupModel;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -8,6 +9,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
  * Options to alter the default representation of best offer prices
  */
 @JsonDeserialize(builder = ExBestOffersOverrides.Builder.class)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class ExBestOffersOverrides {
   private final int rollupLimit;
   private final RollupModel rollupModel;
@@ -69,6 +71,7 @@ public class ExBestOffersOverrides {
     return this.rollupLiabilityFactor;
   }
 
+  @JsonIgnoreProperties(ignoreUnknown = true)
   public static class Builder {
     private int rollupLimit;
     private RollupModel rollupModel;

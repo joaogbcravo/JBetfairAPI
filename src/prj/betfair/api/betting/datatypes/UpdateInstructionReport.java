@@ -1,11 +1,13 @@
 package prj.betfair.api.betting.datatypes;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import prj.betfair.api.betting.datatypes.UpdateInstruction;
 import prj.betfair.api.betting.datatypes.UpdateInstructionReport;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 @JsonDeserialize(builder = UpdateInstructionReport.Builder.class)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class UpdateInstructionReport {
   private final String status;
   private final String errorCode;
@@ -38,6 +40,7 @@ public class UpdateInstructionReport {
     return this.instruction;
   }
 
+  @JsonIgnoreProperties(ignoreUnknown = true)
   public static class Builder {
     private String status;
     private String errorCode;

@@ -1,5 +1,6 @@
 package prj.betfair.api.betting.datatypes;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import prj.betfair.api.betting.datatypes.CountryCodeResult;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
@@ -7,6 +8,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
  * CountryCode Result
  */
 @JsonDeserialize(builder = CountryCodeResult.Builder.class)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class CountryCodeResult {
   private final int marketCount;
   private final String countryCode;
@@ -30,6 +32,7 @@ public class CountryCodeResult {
     return this.marketCount;
   }
 
+  @JsonIgnoreProperties(ignoreUnknown = true)
   public static class Builder {
     private int marketCount;
     private String countryCode;

@@ -1,11 +1,13 @@
 package prj.betfair.api.betting.datatypes;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import prj.betfair.api.betting.datatypes.CancelInstruction;
 import prj.betfair.api.betting.datatypes.CancelInstructionReport;
 import java.util.Date;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 @JsonDeserialize(builder = CancelInstructionReport.Builder.class)
 public class CancelInstructionReport {
   private final String status;
@@ -57,6 +59,7 @@ public class CancelInstructionReport {
     return this.cancelledDate;
   }
 
+  @JsonIgnoreProperties(ignoreUnknown = true)
   public static class Builder {
     private String status;
     private String errorCode;

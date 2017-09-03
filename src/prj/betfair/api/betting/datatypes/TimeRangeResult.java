@@ -1,5 +1,6 @@
 package prj.betfair.api.betting.datatypes;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import prj.betfair.api.betting.datatypes.TimeRange;
 import prj.betfair.api.betting.datatypes.TimeRangeResult;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -8,6 +9,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
  * TimeRange Result
  */
 @JsonDeserialize(builder = TimeRangeResult.Builder.class)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class TimeRangeResult {
   private final TimeRange timeRange;
   private final int marketCount;
@@ -31,6 +33,7 @@ public class TimeRangeResult {
     return this.marketCount;
   }
 
+  @JsonIgnoreProperties(ignoreUnknown = true)
   public static class Builder {
     private TimeRange timeRange;
     private int marketCount;

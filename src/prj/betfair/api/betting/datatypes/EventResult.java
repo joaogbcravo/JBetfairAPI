@@ -1,5 +1,6 @@
 package prj.betfair.api.betting.datatypes;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import prj.betfair.api.betting.datatypes.Event;
 import prj.betfair.api.betting.datatypes.EventResult;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -8,6 +9,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
  * Event Result
  */
 @JsonDeserialize(builder = EventResult.Builder.class)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class EventResult {
   private final Event event;
   private final int marketCount;
@@ -31,6 +33,7 @@ public class EventResult {
     return this.marketCount;
   }
 
+  @JsonIgnoreProperties(ignoreUnknown = true)
   public static class Builder {
     private Event event;
     private int marketCount;

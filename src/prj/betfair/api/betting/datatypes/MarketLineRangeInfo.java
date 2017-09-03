@@ -1,5 +1,6 @@
 package prj.betfair.api.betting.datatypes;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import prj.betfair.api.betting.datatypes.MarketLineRangeInfo;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -8,6 +9,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
  * Market Line and Range Info
  */
 @JsonDeserialize(builder = MarketLineRangeInfo.Builder.class)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class MarketLineRangeInfo {
   private final String marketUnit;
   private final double interval;
@@ -49,6 +51,7 @@ public class MarketLineRangeInfo {
     return this.marketUnit;
   }
 
+  @JsonIgnoreProperties(ignoreUnknown = true)
   public static class Builder {
     private String marketUnit;
     private double interval;

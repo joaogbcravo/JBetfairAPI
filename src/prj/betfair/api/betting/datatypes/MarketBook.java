@@ -1,5 +1,6 @@
 package prj.betfair.api.betting.datatypes;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import prj.betfair.api.betting.datatypes.MarketBook;
 import prj.betfair.api.betting.datatypes.Runner;
 import java.util.List;
@@ -11,6 +12,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
  * The dynamic data in a market
  */
 @JsonDeserialize(builder = MarketBook.Builder.class)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class MarketBook {
   private final String status;
   private final boolean isMarketDataDelayed;
@@ -175,6 +177,7 @@ public class MarketBook {
     return this.runners;
   }
 
+  @JsonIgnoreProperties(ignoreUnknown = true)
   public static class Builder {
     private String status;
     private boolean isMarketDataDelayed;

@@ -1,5 +1,6 @@
 package prj.betfair.api.betting.datatypes;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import prj.betfair.api.betting.datatypes.PriceProjection;
 import prj.betfair.api.betting.datatypes.ExBestOffersOverrides;
 import prj.betfair.api.betting.datatypes.SimpleTypes.PriceData;
@@ -10,6 +11,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
  * Selection criteria of the returning price data
  */
 @JsonDeserialize(builder = PriceProjection.Builder.class)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class PriceProjection {
   private final boolean virtualise;
   private final boolean rolloverStakes;
@@ -56,6 +58,7 @@ public class PriceProjection {
     return this.rolloverStakes;
   }
 
+  @JsonIgnoreProperties(ignoreUnknown = true)
   public static class Builder {
     private boolean virtualise;
     private boolean rolloverStakes;

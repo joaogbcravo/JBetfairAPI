@@ -1,11 +1,13 @@
 package prj.betfair.api.betting.datatypes;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import prj.betfair.api.betting.datatypes.ExchangePrices;
 import prj.betfair.api.betting.datatypes.PriceSize;
 import java.util.List;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 @JsonDeserialize(builder = ExchangePrices.Builder.class)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class ExchangePrices {
   private final List<PriceSize> availableToBack;
   private final List<PriceSize> availableToLay;
@@ -38,6 +40,7 @@ public class ExchangePrices {
     return this.tradedVolume;
   }
 
+  @JsonIgnoreProperties(ignoreUnknown = true)
   public static class Builder {
     private List<PriceSize> availableToBack;
     private List<PriceSize> availableToLay;

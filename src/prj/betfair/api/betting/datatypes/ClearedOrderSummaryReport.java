@@ -1,5 +1,6 @@
 package prj.betfair.api.betting.datatypes;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import prj.betfair.api.betting.datatypes.ClearedOrderSummary;
 import prj.betfair.api.betting.datatypes.ClearedOrderSummaryReport;
 import java.util.List;
@@ -10,6 +11,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
  * A container representing search results.
  */
 @JsonDeserialize(builder = ClearedOrderSummaryReport.Builder.class)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class ClearedOrderSummaryReport {
   private final boolean moreAvailable;
   private final List<ClearedOrderSummary> clearedOrders;
@@ -36,6 +38,7 @@ public class ClearedOrderSummaryReport {
     return this.moreAvailable;
   }
 
+  @JsonIgnoreProperties(ignoreUnknown = true)
   public static class Builder {
     private boolean moreAvailable;
     private List<ClearedOrderSummary> clearedOrders;

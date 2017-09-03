@@ -1,5 +1,6 @@
 package prj.betfair.api.betting.datatypes;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import prj.betfair.api.betting.datatypes.StartingPrices;
 import prj.betfair.api.betting.datatypes.PriceSize;
 import java.util.List;
@@ -9,6 +10,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
  * Information about the Betfair Starting Price. Only available in BSP markets
  */
 @JsonDeserialize(builder = StartingPrices.Builder.class)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class StartingPrices {
   private final double nearPrice;
   private final List<PriceSize> backStakeTaken;
@@ -64,6 +66,7 @@ public class StartingPrices {
     return this.actualSP;
   }
 
+  @JsonIgnoreProperties(ignoreUnknown = true)
   public static class Builder {
     private double nearPrice;
     private List<PriceSize> backStakeTaken;

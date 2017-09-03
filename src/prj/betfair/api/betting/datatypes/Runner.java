@@ -1,5 +1,6 @@
 package prj.betfair.api.betting.datatypes;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import prj.betfair.api.betting.datatypes.Runner;
 import prj.betfair.api.betting.datatypes.StartingPrices;
 import prj.betfair.api.betting.datatypes.ExchangePrices;
@@ -14,6 +15,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
  * The dynamic data about runners in a market
  */
 @JsonDeserialize(builder = Runner.Builder.class)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Runner {
   private final String status;
   private final double handicap;
@@ -118,6 +120,7 @@ public class Runner {
     return this.matches;
   }
 
+  @JsonIgnoreProperties(ignoreUnknown = true)
   public static class Builder {
     private String status;
     private double handicap;

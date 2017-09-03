@@ -1,5 +1,6 @@
 package prj.betfair.api.betting.datatypes;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import prj.betfair.api.betting.datatypes.PlaceInstruction;
 import prj.betfair.api.betting.datatypes.PlaceInstructionReport;
 import java.util.Date;
@@ -10,12 +11,14 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
  * Response to a PlaceInstruction
  */
 @JsonDeserialize(builder = PlaceInstructionReport.Builder.class)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class PlaceInstructionReport {
   private final String status;
   private final double sizeMatched;
   private final String betId;
   private final PlaceInstruction instruction;
   private final String errorCode;
+  private final String orderStatus;
   private final Date placedDate;
   private final double averagePriceMatched;
 
@@ -25,6 +28,7 @@ public class PlaceInstructionReport {
     this.betId = builder.betId;
     this.instruction = builder.instruction;
     this.errorCode = builder.errorCode;
+    this.orderStatus = builder.orderStatus;
     this.placedDate = builder.placedDate;
     this.averagePriceMatched = builder.averagePriceMatched;
   }
@@ -41,6 +45,14 @@ public class PlaceInstructionReport {
    */
   public String getErrorCode() {
     return this.errorCode;
+  }
+
+  /**
+    * @return orderStatus The status of the order, if the instruction succeeded.
+    * If the instruction was unsuccessful, no value is provided.
+   */
+  public String getOrderStatus() {
+    return orderStatus;
   }
 
   /**
@@ -78,12 +90,14 @@ public class PlaceInstructionReport {
     return this.sizeMatched;
   }
 
+  @JsonIgnoreProperties(ignoreUnknown = true)
   public static class Builder {
     private String status;
     private double sizeMatched;
     private String betId;
     private PlaceInstruction instruction;
     private String errorCode;
+    private String orderStatus;
     private Date placedDate;
     private double averagePriceMatched;
 
@@ -105,6 +119,18 @@ public class PlaceInstructionReport {
      */
     public Builder withErrorCode(String errorCode) {
       this.errorCode = errorCode;
+      return this;
+    }
+
+    /**
+     * Use this function to set orderStatus
+     *
+     * @param orderStatus The status of the order, if the instruction succeeded.
+     * If the instruction was unsuccessful, no value is provided.
+     * @return Builder
+     */
+    public Builder withOrderStatus(String orderStatus) {
+      this.orderStatus = orderStatus;
       return this;
     }
 

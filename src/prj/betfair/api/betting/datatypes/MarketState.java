@@ -1,5 +1,6 @@
 package prj.betfair.api.betting.datatypes;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import prj.betfair.api.betting.datatypes.MarketState;
 import java.util.Date;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -9,6 +10,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
  * Market definition
  */
 @JsonDeserialize(builder = MarketState.Builder.class)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class MarketState {
   private final String status;
   private final boolean complete;
@@ -95,6 +97,7 @@ public class MarketState {
     return this.totalAvailable;
   }
 
+  @JsonIgnoreProperties(ignoreUnknown = true)
   public static class Builder {
     private String status;
     private boolean complete;

@@ -1,10 +1,12 @@
 package prj.betfair.api.betting.datatypes;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import prj.betfair.api.betting.datatypes.PriceSize;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 @JsonDeserialize(builder = PriceSize.Builder.class)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class PriceSize {
   private final double price;
   private final double size;
@@ -28,6 +30,7 @@ public class PriceSize {
     return this.size;
   }
 
+  @JsonIgnoreProperties(ignoreUnknown = true)
   public static class Builder {
     private double price;
     private double size;

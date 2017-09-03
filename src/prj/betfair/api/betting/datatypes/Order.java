@@ -1,11 +1,13 @@
 package prj.betfair.api.betting.datatypes;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import prj.betfair.api.betting.datatypes.Order;
 import java.util.Date;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 @JsonDeserialize(builder = Order.Builder.class)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Order {
   private final String status;
   private final String persistenceType;
@@ -148,6 +150,7 @@ public class Order {
     return this.sizeVoided;
   }
 
+  @JsonIgnoreProperties(ignoreUnknown = true)
   public static class Builder {
     private String status;
     private String persistenceType;

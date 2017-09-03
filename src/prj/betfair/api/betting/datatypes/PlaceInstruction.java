@@ -1,5 +1,6 @@
 package prj.betfair.api.betting.datatypes;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import prj.betfair.api.betting.datatypes.PlaceInstruction;
 import prj.betfair.api.betting.datatypes.LimitOrder;
 import prj.betfair.api.betting.datatypes.LimitOnCloseOrder;
@@ -13,6 +14,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
  * Instruction to place a new order
  */
 @JsonDeserialize(builder = PlaceInstruction.Builder.class)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class PlaceInstruction {
   private final double handicap;
   private final OrderType orderType;
@@ -81,6 +83,7 @@ public class PlaceInstruction {
     return this.marketOnCloseOrder;
   }
 
+  @JsonIgnoreProperties(ignoreUnknown = true)
   public static class Builder {
     private double handicap;
     private OrderType orderType;

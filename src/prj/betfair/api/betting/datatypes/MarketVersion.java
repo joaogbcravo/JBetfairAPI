@@ -1,5 +1,6 @@
 package prj.betfair.api.betting.datatypes;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import prj.betfair.api.betting.datatypes.MarketVersion;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
@@ -7,6 +8,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
  * Market version
  */
 @JsonDeserialize(builder = MarketVersion.Builder.class)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class MarketVersion {
   private final long version;
 
@@ -21,6 +23,7 @@ public class MarketVersion {
     return this.version;
   }
 
+  @JsonIgnoreProperties(ignoreUnknown = true)
   public static class Builder {
     private long version;
 

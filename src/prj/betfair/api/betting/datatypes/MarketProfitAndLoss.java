@@ -1,5 +1,6 @@
 package prj.betfair.api.betting.datatypes;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import prj.betfair.api.betting.datatypes.MarketProfitAndLoss;
 import prj.betfair.api.betting.datatypes.RunnerProfitAndLoss;
 import java.util.List;
@@ -9,6 +10,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
  * Profit and loss in a market
  */
 @JsonDeserialize(builder = MarketProfitAndLoss.Builder.class)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class MarketProfitAndLoss {
   private final double commissionApplied;
   private final List<RunnerProfitAndLoss> profitAndLosses;
@@ -42,6 +44,7 @@ public class MarketProfitAndLoss {
     return this.profitAndLosses;
   }
 
+  @JsonIgnoreProperties(ignoreUnknown = true)
   public static class Builder {
     private double commissionApplied;
     private List<RunnerProfitAndLoss> profitAndLosses;

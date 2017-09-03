@@ -1,5 +1,6 @@
 package prj.betfair.api.betting.datatypes;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import prj.betfair.api.betting.datatypes.RunnerProfitAndLoss;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
@@ -7,6 +8,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
  * Profit and loss if selection is wins or loses
  */
 @JsonDeserialize(builder = RunnerProfitAndLoss.Builder.class)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class RunnerProfitAndLoss {
   private final double ifWin;
   private final double ifLose;
@@ -40,6 +42,7 @@ public class RunnerProfitAndLoss {
     return this.ifLose;
   }
 
+  @JsonIgnoreProperties(ignoreUnknown = true)
   public static class Builder {
     private double ifWin;
     private double ifLose;

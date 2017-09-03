@@ -1,5 +1,6 @@
 package prj.betfair.api.betting.datatypes;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import prj.betfair.api.betting.datatypes.RunnerId;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -8,6 +9,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
  * This object contains the unique identifier for a runner
  */
 @JsonDeserialize(builder = RunnerId.Builder.class)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class RunnerId {
   private final double handicap;
   private final long selectionId;
@@ -41,6 +43,7 @@ public class RunnerId {
     return this.handicap;
   }
 
+  @JsonIgnoreProperties(ignoreUnknown = true)
   public static class Builder {
     private double handicap;
     private long selectionId;

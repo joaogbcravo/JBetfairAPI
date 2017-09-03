@@ -1,5 +1,6 @@
 package prj.betfair.api.betting.datatypes;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import prj.betfair.api.betting.datatypes.MarketFilter;
 import prj.betfair.api.betting.datatypes.TimeRange;
 import prj.betfair.api.betting.datatypes.SimpleTypes.OrderStatus;
@@ -12,6 +13,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 @JsonDeserialize(builder = MarketFilter.Builder.class)
 @JsonSerialize(include=JsonSerialize.Inclusion.NON_DEFAULT)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class MarketFilter {
   private  Set<String> exchangeIds;
   private  Set<String> eventTypeIds;
@@ -167,6 +169,7 @@ public class MarketFilter {
     return this.withOrders;
   }
 
+  @JsonIgnoreProperties(ignoreUnknown = true)
   public static class Builder {
     private Set<String> exchangeIds;
     private Set<String> eventTypeIds;

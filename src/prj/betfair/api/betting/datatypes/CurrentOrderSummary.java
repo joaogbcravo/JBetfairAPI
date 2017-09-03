@@ -1,5 +1,6 @@
 package prj.betfair.api.betting.datatypes;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import prj.betfair.api.betting.datatypes.PriceSize;
 import prj.betfair.api.betting.datatypes.CurrentOrderSummary;
 import java.util.Date;
@@ -10,6 +11,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
  * Summary of a current order.
  */
 @JsonDeserialize(builder = CurrentOrderSummary.Builder.class)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class CurrentOrderSummary {
   private final String status;
   private final String persistenceType;
@@ -32,6 +34,7 @@ public class CurrentOrderSummary {
   private final String side;
   private final Date matchedDate;
 
+  @JsonIgnoreProperties(ignoreUnknown = true)
   public CurrentOrderSummary(Builder builder) {
     this.status = builder.status;
     this.persistenceType = builder.persistenceType;

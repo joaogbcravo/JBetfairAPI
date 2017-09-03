@@ -1,5 +1,6 @@
 package prj.betfair.api.betting.datatypes;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import prj.betfair.api.betting.datatypes.LimitOnCloseOrder;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -8,6 +9,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
  * Place a new LIMIT_ON_CLOSE bet
  */
 @JsonDeserialize(builder = LimitOnCloseOrder.Builder.class)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class LimitOnCloseOrder {
   private final double liability;
   private final double price;
@@ -31,6 +33,7 @@ public class LimitOnCloseOrder {
     return this.price;
   }
 
+  @JsonIgnoreProperties(ignoreUnknown = true)
   public static class Builder {
     private double liability;
     private double price;

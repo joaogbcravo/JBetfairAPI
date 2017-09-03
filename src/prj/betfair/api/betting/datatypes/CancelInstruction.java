@@ -1,5 +1,6 @@
 package prj.betfair.api.betting.datatypes;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import prj.betfair.api.betting.datatypes.CancelInstruction;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -8,6 +9,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
  * Instruction to fully or partially cancel an order (only applies to LIMIT orders)
  */
 @JsonDeserialize(builder = CancelInstruction.Builder.class)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class CancelInstruction {
   private final String betId;
   private final double sizeReduction;
@@ -31,6 +33,7 @@ public class CancelInstruction {
     return this.sizeReduction;
   }
 
+  @JsonIgnoreProperties(ignoreUnknown = true)
   public static class Builder {
     private String betId;
     private double sizeReduction;

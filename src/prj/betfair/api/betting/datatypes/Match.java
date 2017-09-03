@@ -1,6 +1,7 @@
 package prj.betfair.api.betting.datatypes;
 
-import prj.betfair.api.betting.datatypes.Match;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.util.Date;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -10,13 +11,14 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
  * MatchProjection
  */
 @JsonDeserialize(builder = Match.Builder.class)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Match {
   private final Date matchDate;
   private final double price;
   private final String matchId;
   private final String betId;
   private final String side;
-  private final double Size;
+  private final double size;
 
   public Match(Builder builder) {
     this.matchDate = builder.matchDate;
@@ -24,7 +26,7 @@ public class Match {
     this.matchId = builder.matchId;
     this.betId = builder.betId;
     this.side = builder.side;
-    this.Size = builder.Size;
+    this.size = builder.size;
   }
 
   /**
@@ -56,11 +58,11 @@ public class Match {
   }
 
   /**
-   * @return Size Size matched at in this fragment, or at this price or avg price depending on
+   * @return size size matched at in this fragment, or at this price or avg price depending on
    *         rollup
    */
   public double getSize() {
-    return this.Size;
+    return this.size;
   }
 
   /**
@@ -70,25 +72,26 @@ public class Match {
     return this.matchDate;
   }
 
+  @JsonIgnoreProperties(ignoreUnknown = true)
   public static class Builder {
     private Date matchDate;
     private double price;
     private String matchId;
     private String betId;
     private String side;
-    private double Size;
+    private double size;
 
     /**
      * @param price : Either actual match price or avg match price depending on rollup.
      * @param side
-     * @param Size : Size matched at in this fragment, or at this price or avg price depending on
+     * @param size : size matched at in this fragment, or at this price or avg price depending on
      *        rollup
      */
     public Builder(@JsonProperty("price") double price, @JsonProperty("side") String side,
-        @JsonProperty("Size") double Size) {
+        @JsonProperty("size") double size) {
       this.price = price;
       this.side = side;
-      this.Size = Size;
+      this.size = size;
     }
 
     /**
