@@ -1,10 +1,10 @@
 package prj.betfair.api.betting.datatypes;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import prj.betfair.api.betting.datatypes.LimitOrder;
-import prj.betfair.api.betting.datatypes.SimpleTypes.PersistenceType;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import prj.betfair.api.betting.datatypes.SimpleTypes.PersistenceType;
+import prj.betfair.api.betting.datatypes.SimpleTypes.TimeInForce;
 
 /***
  * Place a new LIMIT order (simple exchange bet for immediate execution)
@@ -15,11 +15,13 @@ public class LimitOrder {
   private final double price;
   private final PersistenceType persistenceType;
   private final double size;
+  private final TimeInForce timeInForce;
 
   public LimitOrder(Builder builder) {
     this.price = builder.price;
     this.persistenceType = builder.persistenceType;
     this.size = builder.size;
+    this.timeInForce = builder.timeInForce;
   }
 
   /**
@@ -43,11 +45,21 @@ public class LimitOrder {
     return this.persistenceType;
   }
 
+  /**
+   * @return timeInForce - The type of TimeInForce value to use. This value takes precedence over any PersistenceType value chosen.
+     If this attribute is populated along with the PersistenceType field, then the PersistenceType will be
+     ignored. When using FILL_OR_KILL for a Line market the Volume Weighted Average Price (VWAP) functionality is disabled
+   */
+  public TimeInForce getTimeInForce() {
+    return timeInForce;
+  }
+
   @JsonIgnoreProperties(ignoreUnknown = true)
   public static class Builder {
     private double price;
     private PersistenceType persistenceType;
     private double size;
+    private TimeInForce timeInForce;
 
     /**
      * @param price : The limit price
@@ -60,6 +72,17 @@ public class LimitOrder {
       this.price = price;
       this.persistenceType = persistenceType;
       this.size = size;
+    }
+
+    /**
+     * Use this function to set timeInForce
+     *
+     * @param timeInForce : The type of TimeInForce value to use.
+     * @return Builder
+     */
+    public Builder withTimeInForce(TimeInForce timeInForce) {
+      this.timeInForce = timeInForce;
+      return this;
     }
 
     public LimitOrder build() {

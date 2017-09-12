@@ -70,4 +70,7 @@ public class SimpleTypes {
   public enum PriceLadderType {
     CLASSIC, FINEST, LINE_RANGE
   }
+  public enum TimeInForce {
+    FILL_OR_KILL
+  }
 }
