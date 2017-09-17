@@ -10,6 +10,8 @@ import prj.betfair.api.betting.datatypes.SimpleTypes.OrderType;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
+import java.text.MessageFormat;
+
 /***
  * Instruction to place a new order
  */
@@ -83,6 +85,26 @@ public class PlaceInstruction {
     return this.marketOnCloseOrder;
   }
 
+  @Override
+  public String toString() {
+
+    String order = "";
+
+    switch (orderType) {
+      case LIMIT:
+        order = limitOrder.toString();
+        break;
+      case LIMIT_ON_CLOSE:
+        order = limitOnCloseOrder.toString();
+        break;
+      case MARKET_ON_CLOSE:
+        order = marketOnCloseOrder.toString();
+        break;
+    }
+
+    return MessageFormat.format("PlaceInstruction: {0} on {1}", order, side);
+  }
+  
   @JsonIgnoreProperties(ignoreUnknown = true)
   public static class Builder {
     private double handicap;

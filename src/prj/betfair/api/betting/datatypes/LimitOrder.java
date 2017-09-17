@@ -6,6 +6,8 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import prj.betfair.api.betting.datatypes.SimpleTypes.PersistenceType;
 import prj.betfair.api.betting.datatypes.SimpleTypes.TimeInForce;
 
+import java.text.MessageFormat;
+
 /***
  * Place a new LIMIT order (simple exchange bet for immediate execution)
  */
@@ -52,6 +54,17 @@ public class LimitOrder {
    */
   public TimeInForce getTimeInForce() {
     return timeInForce;
+  }
+
+  @Override
+  public String toString() {
+    String info;
+    if(timeInForce != null) {
+      info = "TimeInForce: " + timeInForce;
+    } else {
+      info = "PersistenceType: " + persistenceType;
+    }
+    return MessageFormat.format("LimitOrder ({0}): stake of {1} @ price {2}", info, size, price);
   }
 
   @JsonIgnoreProperties(ignoreUnknown = true)

@@ -3,6 +3,8 @@ package prj.betfair.api.betting.datatypes;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import prj.betfair.api.betting.datatypes.PlaceExecutionReport;
 import prj.betfair.api.betting.datatypes.PlaceInstructionReport;
+
+import java.text.MessageFormat;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -57,6 +59,15 @@ public class PlaceExecutionReport {
    */
   public List<PlaceInstructionReport> getInstructionReports() {
     return this.instructionReports;
+  }
+
+  @Override
+  public String toString() {
+    return MessageFormat.format("PlaceExecutionReport: - {0}{1} - CustomerRef {2}",
+            status,
+            errorCode != null ? "(" + errorCode + ")" : "",
+            customerRef
+    );
   }
 
   @JsonIgnoreProperties(ignoreUnknown = true)

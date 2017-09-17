@@ -7,6 +7,8 @@ import prj.betfair.api.betting.datatypes.Event;
 import prj.betfair.api.betting.datatypes.Competition;
 import prj.betfair.api.betting.datatypes.EventType;
 import prj.betfair.api.betting.datatypes.MarketDescription;
+
+import java.text.MessageFormat;
 import java.util.List;
 import java.util.Date;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -104,6 +106,11 @@ public class MarketCatalogue {
    */
   public Event getEvent() {
     return this.event;
+  }
+
+  @Override
+  public String toString() {
+      return MessageFormat.format("Market: {0}({1})", marketName, marketId);
   }
 
   @JsonIgnoreProperties(ignoreUnknown = true)

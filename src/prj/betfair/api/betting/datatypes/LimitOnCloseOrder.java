@@ -5,6 +5,8 @@ import prj.betfair.api.betting.datatypes.LimitOnCloseOrder;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
+import java.text.MessageFormat;
+
 /***
  * Place a new LIMIT_ON_CLOSE bet
  */
@@ -31,6 +33,11 @@ public class LimitOnCloseOrder {
    */
   public double getPrice() {
     return this.price;
+  }
+
+  @Override
+  public String toString() {
+    return MessageFormat.format("LimitOnCloseOrder: liability of {0} @ price {1}", liability, price);
   }
 
   @JsonIgnoreProperties(ignoreUnknown = true)

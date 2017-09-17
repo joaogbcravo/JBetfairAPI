@@ -3,6 +3,8 @@ package prj.betfair.api.betting.datatypes;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import prj.betfair.api.betting.datatypes.PlaceInstruction;
 import prj.betfair.api.betting.datatypes.PlaceInstructionReport;
+
+import java.text.MessageFormat;
 import java.util.Date;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -88,6 +90,16 @@ public class PlaceInstructionReport {
    */
   public double getSizeMatched() {
     return this.sizeMatched;
+  }
+
+  @Override
+  public String toString() {
+    return MessageFormat.format("PlaceInstructionReport - {0}({1}{2}) {3}",
+            status,
+            errorCode != null ? errorCode : "",
+            orderStatus != null ? orderStatus : "",
+            orderStatus != null ? "- Matched stake of " + sizeMatched + " with " + averagePriceMatched + " price" : ""
+    );
   }
 
   @JsonIgnoreProperties(ignoreUnknown = true)

@@ -5,6 +5,8 @@ import prj.betfair.api.betting.datatypes.MarketOnCloseOrder;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
+import java.text.MessageFormat;
+
 /***
  * Place a new MARKET_ON_CLOSE bet
  */
@@ -22,6 +24,11 @@ public class MarketOnCloseOrder {
    */
   public double getLiability() {
     return this.liability;
+  }
+
+  @Override
+  public String toString() {
+    return MessageFormat.format("MarketOnCloseOrder: liability of {1}", liability);
   }
 
   @JsonIgnoreProperties(ignoreUnknown = true)
