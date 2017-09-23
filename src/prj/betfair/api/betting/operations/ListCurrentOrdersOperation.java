@@ -24,6 +24,7 @@ public class ListCurrentOrdersOperation {
   private final TimeRange dateRange;
   private final TimeRange placedDateRange;
   private final Set<String> marketIds;
+  private final Set<String> customerOrderRefs;
   private final Executor executor;
   private final OrderProjection orderProjection;
   private final Set<String> betIds;
@@ -36,6 +37,7 @@ public class ListCurrentOrdersOperation {
     this.dateRange = builder.dateRange;
     this.placedDateRange = builder.placedDateRange;
     this.marketIds = builder.marketIds;
+    this.customerOrderRefs = builder.customerOrderRefs;
     this.executor = builder.executor;
     this.orderProjection = builder.orderProjection;
     this.betIds = builder.betIds;
@@ -54,6 +56,14 @@ public class ListCurrentOrdersOperation {
    */
   public Set<String> getMarketIds() {
     return this.marketIds;
+  }
+
+  /**
+   *
+   * @return customerOrderRefs Optionally restricts the results to the specified customer Order Refs.
+   */
+  public Set<String> getCustomerOrderRefs() {
+    return customerOrderRefs;
   }
 
   /**
@@ -133,6 +143,7 @@ public class ListCurrentOrdersOperation {
     private TimeRange dateRange;
     private TimeRange placedDateRange;
     private Set<String> marketIds;
+    private Set<String> customerOrderRefs;
     private OrderProjection orderProjection;
     private Set<String> betIds;
     private int fromRecord;
@@ -159,6 +170,17 @@ public class ListCurrentOrdersOperation {
      */
     public Builder withMarketIds(Set<String> marketIds) {
       this.marketIds = marketIds;
+      return this;
+    }
+
+    /**
+     * Use this function to set customerOrderRefs
+     *
+     * @param customerOrderRefs Optionally restricts the results to the specified Customer Order Refs.
+     * @return Builder
+     */
+    public Builder withCustomerOrderRefs(Set<String> customerOrderRefs) {
+      this.customerOrderRefs = customerOrderRefs;
       return this;
     }
 
