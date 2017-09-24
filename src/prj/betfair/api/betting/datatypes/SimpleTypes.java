@@ -26,7 +26,7 @@ public class SimpleTypes {
     BACK, LAY
   }
   public enum OrderStatus {
-    EXECUTION_COMPLETE, EXECUTABLE
+    EXECUTION_COMPLETE, EXECUTABLE, EXPIRED, PENDING
   }
   public enum OrderBy {
     BY_BET, BY_MARKET, BY_PLACE_TIME, BY_MATCH_TIME, BY_VOID_TIME, BY_SETTLED_TIME
